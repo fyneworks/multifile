@@ -59,6 +59,15 @@ module.exports = function(grunt) {
         options: {stdout: true}
       }
     },
+    
+    // ---------------------
+    
+    gitcommit: {
+      task: {
+        options: { message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' },
+        files: { src: ['test.txt'] }
+      }
+    },
 
     // ---------------------
 

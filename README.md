@@ -6,12 +6,13 @@ This jQuery Multiple File Selection Plugin ($.MultiFile) is a non-obstrusive plu
 ---
 
 ##Installation
+
 Add the required javascript files to your document, just before the `</html>` tag.
 
-First, add the latest version of [jQuery](https://developers.google.com/speed/libraries/devguide#jquery)
+Add [jQuery](https://developers.google.com/speed/libraries/devguide#jquery) to your page. We strongly recommend you make use of Google's Hosted Libraries service.
 
 ```html
-<script src="http://code.jquery.com/jquery-latest.min.js"
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
 				type="text/javascript"></script>
 ```
 
@@ -27,6 +28,7 @@ Then add the plugin (after jQuery)
 ##Basic Usage
 
 Just add the `class="multi"` to your file input element:
+
 ```html
 <input type="file" class="multi"/>
 ```
