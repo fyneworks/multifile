@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     sass: {
-      dist: {
+      docs: {
         options:{/*outputStyle: 'compressed'*/ /* cssmin will do this for us */},
         files: {'docs.css' : 'docs/docs.scss'}
       },
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     // ---------------------
 
     cssmin: {
-      minify: {
+      docs: {
         options: {
           expand: false,
           processImport: true,
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     // ---------------------
 
     jade: {
-      release: {
+      docs: {
         options: {
           data: {
             debug: false,
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         compress: true /*{drop_console: true}*/,
         mangle: true /*{except: ['jQuery','fwx']}*/
       },
-      production: {
+      dist: {
         options: {},
         files: {'jQuery.MultiFile.min.js': 'jQuery.MultiFile.js'}
       }
@@ -75,15 +75,16 @@ module.exports = function(grunt) {
       options:{
         reload: true
       },
-      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade','beep'], options: {} },
-      scss: { files: ['docs/*.scss'], tasks: ['sass','beep'], options: {} },
-      css: { files: ['*.css'], tasks: ['cssmin','beep'], options: {} },
-      js: { files: ['jquery.MultiFile.js'], tasks: ['uglify','beep'], options: {} }
+      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade:docs','beep'], options: {} },
+      scss: { files: ['docs/*.scss'], tasks: ['sass:docs','beep'], options: {} },
+      css: { files: ['*.css'], tasks: ['cssmin:docs','beep'], options: {} },
+      js: { files: ['jquery.MultiFile.js'], tasks: ['uglify:dist','beep'], options: {} }
     }
   });
 
   // ---------------------
   
+  // Load required plugins
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -91,16 +92,28 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('default', ['uglify']);
-  grunt.registerTask('min', ['uglify']);
-  grunt.registerTask('css', ['sass','cssmin']);
-  grunt.registerTask('doc', ['jade','sass','cssmin']);
-  grunt.registerTask('all', ['uglify','jade','sass','cssmin']);
+  // ---------------------
   
+  // Register common tasks and aliases
+  grunt.registerTask('default', ['uglify:dist']);
+  grunt.registerTask('build', ['uglify:dist']);
+  grunt.registerTask('min', ['uglify:dist']);
+  grunt.registerTask('css', ['sass:docs','cssmin:docs']);
+  grunt.registerTask('doc', ['jade:docs','sass:docs','cssmin:docs']);
+  grunt.registerTask('all', ['uglify:dist','jade:docs','sass:docs','cssmin:docs']);
   grunt.registerTask('beep', ['shell:beep_twice']);
+  grunt.registerTask('deploy', ['gitpush']);
 
   // ---------------------
   
+  // Custom test tasks
+  grunt.registerTask('test', function() {
+    grunt.log.write('Unit tests will go here'+'\n').ok();
+  });
+
+  // ---------------------
+  
+  // Watch for file changes and run tasks automatically
   grunt.event.on('watch', function(action, filepath, target) {
     //grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
   });
