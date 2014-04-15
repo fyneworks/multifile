@@ -1,7 +1,9 @@
 module.exports = function(grunt) {
   
+  var package = grunt.file.readJSON('package.json');
+
   grunt.initConfig ({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: package,
 
     sass: {
       docs: {
@@ -29,8 +31,9 @@ module.exports = function(grunt) {
       docs: {
         options: {
           data: {
+            pkg: package,
             debug: false,
-            timestamp: "<%= new Date().getTime() %>"
+            timestamp: "<%= pkg.name + ' '+ (new Date().getTime()) %>"
           }
         },
         files: {"docs.html": ["docs/docs.jade"]}

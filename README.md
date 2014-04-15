@@ -76,3 +76,11 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 ```html
 <input type="file" class="multi" accept="gif|jpg"/>
 ```
+
+---
+
+##Continous Integration with Travis CI
+
+Master: [![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile)
+
+Dev: [![Build Status](https://travis-ci.org/fyneworks/multifile.svg?branch=dev)](https://travis-ci.org/fyneworks/multifile)
