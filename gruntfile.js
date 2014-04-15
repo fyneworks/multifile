@@ -63,10 +63,14 @@ module.exports = function(grunt) {
     // ---------------------
     
     gitcommit: {
-      task: {
-        options: { message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' },
-        files: { src: ['test.txt'] }
-      }
+      local: {
+        options: { message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' }
+      },
+    },
+    gitpush: {
+      remote: {
+        options: { message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' }
+      },
     },
 
     // ---------------------
@@ -80,6 +84,7 @@ module.exports = function(grunt) {
       css: { files: ['*.css'], tasks: ['cssmin:docs','beep'], options: {} },
       js: { files: ['jquery.MultiFile.js'], tasks: ['uglify:dist','beep'], options: {} }
     }
+
   });
 
   // ---------------------
@@ -91,6 +96,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-git');
 
   // ---------------------
   
