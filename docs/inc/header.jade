@@ -1,0 +1,16 @@
+.navbar.navbar-default.navbar-fixed-top.navbar-static-top(role='navigation')
+	.container
+			.navbar-header
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href='#') Fyneworks
+			.navbar-collapse.collapse
+				ul.nav.navbar-nav
+					- var obj = { 'Intro':'Intro','Examples':'Examples', 'MultiLingual':'Locale', 'Uploading':'Uploading', 'Download':'Download', 'Support':'Support','License':'License', 'More':'More' }
+						- each val, key in obj
+								li
+									a(href='#tab-#{key}',id='#btn-#{key}') #{val}
+
