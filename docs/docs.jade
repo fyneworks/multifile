@@ -1,19 +1,10 @@
-//
-	jade views/test.jade -o ./
-
 extends layout
 
 block content
 	div.container
 		div.jumbotron
-			h1 jQuery multifile
+			h1 jQuery MultiFile
 			p The <strong>unopinionated</strong> way to implement file selection.
 	
 	div.container
 		include docs.html
-//
-	div.container: pre: code.language-css
-			include ../docs.css
-
-	div.container: pre: code.language-javascript
-			include ../gruntfile.js

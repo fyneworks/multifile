@@ -95,7 +95,7 @@ if (window.jQuery)(function ($) {
                     o.max = (String(MultiFile.e.className.match(/\b(max|limit)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
                     if (!(o.max > 0)) o.max = -1;
                     else o.max = String(o.max).match(/[0-9]+/gi)[0];
-                }
+                };
                 o.max = new Number(o.max);
                 // limit extensions?
                 o.accept = o.accept || MultiFile.E.attr('accept') || '';
@@ -108,7 +108,7 @@ if (window.jQuery)(function ($) {
                     o.maxsize = (String(MultiFile.e.className.match(/\b(maxsize|size)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
                     if (!(o.maxsize > 0)) o.maxsize = -1;
                     else o.maxsize = String(o.maxsize).match(/[0-9]+/gi)[0];
-                }
+                };
 
                 //===
 
@@ -274,10 +274,8 @@ if (window.jQuery)(function ($) {
                       function sl(x){ return x>1048576? (x/1048576).toFixed(1)+'Mb' : (x/1048576).toFixed(1)+'Kb' };
                       
                       // limit the max size of files selected
-                      if (MultiFile.maxsize){
-                        if(total_size>MultiFile.maxsize){
-                          ERROR[ERROR.length] = MultiFile.STRING.oversize.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
-                        };
+                      if (MultiFile.maxsize>0 && total_size>MultiFile.maxsize){
+                        ERROR[ERROR.length] = MultiFile.STRING.oversize.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
                       };
 
                       // Create a new file input element
@@ -325,7 +323,7 @@ if (window.jQuery)(function ($) {
                         //};
 
                         // Update list
-                        MultiFile.addToList(this, slave_count);
+                        MultiFile.addToList(this, slave_count, files);
 
                         //# Trigger Event! afterFileSelect
                         if (!MultiFile.trigger('afterFileSelect', this, MultiFile)) return false;
@@ -344,53 +342,54 @@ if (window.jQuery)(function ($) {
 
 
                 // Add a new file to the list
-                MultiFile.addToList = function (slave, slave_count) {
+                MultiFile.addToList = function (slave, slave_count, files) {
                     //if(window.console) console.log('MultiFile.addToList',slave_count);
 
                     //# Trigger Event! onFileAppend
                     if (!MultiFile.trigger('onFileAppend', slave, MultiFile)) return false;
                     //# End Event!
+                    
+                    $.each(files, function(i, file){
+                        // Create label elements
+                        var
+                            r = $('<div class="MultiFile-label"></div>'),
+                            v = String(file.name || '' /*.attr('value)*/ ),
+                            a = $('<span class="MultiFile-title" title="' + MultiFile.STRING.selected.replace('$file', v) + '">' + MultiFile.STRING.file.replace('$file', v.match(/[^\/\\]+$/gi)[0]) + '</span>'),
+                            b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
+                                .click(function () {
 
-                    // Create label elements
-                    var
-                    r = $('<div class="MultiFile-label"></div>'),
-                        v = String(slave.value || '' /*.attr('value)*/ ),
-                        a = $('<span class="MultiFile-title" title="' + MultiFile.STRING.selected.replace('$file', v) + '">' + MultiFile.STRING.file.replace('$file', v.match(/[^\/\\]+$/gi)[0]) + '</span>'),
-                        b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>');
+                                    //# Trigger Event! onFileRemove
+                                    if (!MultiFile.trigger('onFileRemove', slave, MultiFile)) return false;
+                                    //# End Event!
 
-                    // Insert label
-                    MultiFile.list.append(
-                        r.append(b, ' ', a)
-                    );
+                                    MultiFile.n--;
+                                    MultiFile.current.disabled = false;
 
-                    b
-                        .click(function () {
+                                    // Remove element, remove label, point to current
+                                    MultiFile.slaves[slave_count] = null;
+                                    $(slave).remove();
+                                    $(this).parent().remove();
 
-                            //# Trigger Event! onFileRemove
-                            if (!MultiFile.trigger('onFileRemove', slave, MultiFile)) return false;
-                            //# End Event!
+                                    // Show most current element again (move into view) and clear selection
+                                    $(MultiFile.current).css({
+                                        position: '',
+                                        top: ''
+                                    });
+                                    $(MultiFile.current).reset().val('').attr('value', '')[0].value = '';
 
-                            MultiFile.n--;
-                            MultiFile.current.disabled = false;
+                                    //# Trigger Event! afterFileRemove
+                                    if (!MultiFile.trigger('afterFileRemove', slave, MultiFile)) return false;
+                                    //# End Event!
 
-                            // Remove element, remove label, point to current
-                            MultiFile.slaves[slave_count] = null;
-                            $(slave).remove();
-                            $(this).parent().remove();
+                                    return false;
+                                })
+                            ;
 
-                            // Show most current element again (move into view) and clear selection
-                            $(MultiFile.current).css({
-                                position: '',
-                                top: ''
-                            });
-                            $(MultiFile.current).reset().val('').attr('value', '')[0].value = '';
-
-                            //# Trigger Event! afterFileRemove
-                            if (!MultiFile.trigger('afterFileRemove', slave, MultiFile)) return false;
-                            //# End Event!
-
-                            return false;
-                        });
+                            // Insert label
+                            MultiFile.list.append(
+                                r.append(b, ' ', a)
+                            );
+                    });
 
                     //# Trigger Event! afterFileAppend
                     if (!MultiFile.trigger('afterFileAppend', slave, MultiFile)) return false;

@@ -1,386 +1,354 @@
 <div class="Clear" id="body">
 
-  <div class="Clear" id="documentation">
+  <div class="container clear section">
 
-    <div class="x-tabs">
+    <div class="row">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <h3>What
+          <span style="color:green;">this is</span>
+        </h3>
+        <p>
+          This
+          <strong>jQuery Multiple File Selection Plugin</strong>
+          (<code>$.MultiFile</code>) is a non-obstrusive plugin for <a href="http://www.jquery.com/">jQuery</a>
+          that helps users easily
+          <strong>select multiple files</strong> for upload. It lets you apply some basic restrictions/validation so you can easily
+          <strong>reject files before they're uploaded</strong> based on their extension or size
+          <strong>before they're uploaded</strong>.
+        </p>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <h3>What <span style="color:red;">this isn't</span></h3>
+        <p>
+          <strong class="warning">This is not a file upload tool</strong>. Uploading files require
+          <strong>server-side integration</strong> and
+          <strong>security considerations</strong>
+          this project will never support. We can recommend
+          <a href="http://www.uploadify.com/" target="_blank">many</a>,
+          <a href="http://www.plupload.com/" target="_blank">many</a>,
+          <strong><a href="http://blueimp.github.io/jQuery-File-Upload/" target="_blank">many</a>
+          </strong>
+          great tools if you're looking for a complete upload solution. But if you don't already manage your own server-side integration, or if you have no idea what I'm talking about, then this plugin is not for you.
+        </p>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <h3>What's new?</h3>
+        <p>
+          <strong>A fresh start... <em>ish</em>
+          </strong>: This project started a a very long time ago... and it's been dormant since 2009! Support has been shockingly bad, we admit, but we would like to engage more actively with our users and the jQuery community from now on. So as of April 2014, we've left <a href="https://code.google.com/p/jquery-fyneworks/" target="_blank">Google Code</a> behind and will be starting a fresh project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>. Our other projects (<a href="http://www.fyneworks.com/jquery/star-rating">Star Rating</a> &amp; <a href="http://www.fyneworks.com/jquery/CKEditor">CKEditor</a> will follow shortly). We very much encourage and would love you all to report issues, contribue and discuss this project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>.
+        </p>
+      </div>
+    </div>
 
-      <div class="container clear section" id="tab-Intro">
 
-        <h2>Introduction</h2>
+    <h3>Getting started</h3>
+    <div class="row">
+      <div class="col-md-8">
+        <p>
+          Just add the
+          <code><strong>multi</strong></code> class to your file input element.
+        </p>
+        <pre><code class="language-markup">&lt;input type="file" class="multi"/&gt;</code></pre>
+      </div>
+      <div class="col-md-4">
+        <input type="file" multiple="multiple" class="multi" multiple="multiple" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p>
+          Use the
+          <code><strong>maxlength</strong></code> property if you want to limit the number of files selected.
+          (<span style="font-weight:bold; color:red;">server-side validation is always required</span>)
+        </p>
+        <pre><code class="language-markup">&lt;input type="file" class="multi" maxlength="2"/&gt;</code></pre>
+      </div>
+      <div class="col-md-4">
+        <input type="file" multiple="multiple" class="multi" maxlength="2" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p>
+          Use the
+          <code><strong>accept</strong></code> property if you only want files of a certain extension to be selected Separate valid extensions with a "|", like this: "jpg|gif|png". (
+          <span style="font-weight:bold; color:red;">server-side validation is always required</span>)
+        </p>
+        <pre><code class="language-markup">&lt;input type="file" class="multi" accept="gif|jpg"/&gt;</code></pre>
+      </div>
+      <div class="col-md-4">
+        <input type="file" multiple="multiple" class="multi" accept="gif|jpg" />
+      </div>
+    </div>
+  </div>
 
-        <div class="row">
 
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h3>What
-              <span style="color:green;">this is</span>
-            </h3>
-            <p>
-              This
-              <strong>jQuery Multiple File Selection Plugin</strong>(
-              <code>$.MultiFile</code>) is a non-obstrusive plugin for <a href="http://www.jquery.com/">jQuery</a>
-              that helps users easily
-              <strong>select multiple files</strong>for upload. It lets you apply some basic restrictions/validation so you can easily
-              <strong>reject files before they're uploaded</strong>based on their extension or size
-              <strong>before they're uploaded</strong>.
-            </p>
+  <div class="container clear section" id="Usage">
+
+    <h2>Usage Examples</h2>
+
+    <h3>Using Attributes</h3>
+    <div class="row">
+
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 1</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi"
+  maxlength="2"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 2 files.
+            <br/>Allowed extensions: any.
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h3>What
-              <span style="color:red;">this isn't</span>
-            </h3>
-            <p>
-              <strong class="warning">This is not a file upload tool</strong>. Uploading files require
-              <strong>server-side integration</strong>and
-              <strong>security considerations</strong>
-              this project will never support. We can recommend
-              <a href="http://www.uploadify.com/" target="_blank">many</a>,
-              <a href="http://www.plupload.com/" target="_blank">many</a>,
-              <strong><a href="http://blueimp.github.io/jQuery-File-Upload/" target="_blank">many</a>
-              </strong>
-              great tools if you're looking for a complete upload solution. But if you don't already manage your own server-side integration, or if you have no idea what I'm talking about, then this plugin is not for you.
-            </p>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" maxlength="2" />
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 2</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi"
+  accept="gif|jpg"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: no limit.
+            <br/>Allowed extensions: gif and jpg.
           </div>
-        </div>
-        <div class="row">
-          <h3>News</h3>
-          <p>
-            <strong>2014-05-15:</strong>
-            <ul>
-              <li>moved to GitHub</li>
-              <li>now supports HTML5's
-                <code>multiple="multiple"</code>
-              </li>
-            </ul>
-          </p>
-        </div>
-
-
-        <div class="row">
-          <h3>The very basics</h3>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">
-                <p>
-                  Just add the
-                  <code>
-                    <strong>multi</strong>
-                  </code>class to your file input element.
-                </p>
-                <pre>
-                  <code class="language-markup">&lt;input type="file" class="multi"/&gt;</code>
-                </pre>
-                <br/>
-                <br/>
-                <input type="file" class="multi" multiple="multiple" />
-              </div>
-              <div class="col-md-4">
-                <p>
-                  Use the
-                  <code>
-                    <strong>maxlength</strong>
-                  </code>property if you want to limit the number of files selected. (
-                  <span style="font-weight:bold; color:red;">server-side validation is always required</span>)
-                </p>
-                <pre>
-                  <code class="language-markup">&lt;input type="file" class="multi" maxlength="2"/&gt;</code>
-                </pre>
-                <br/>
-                <br/>
-                <input type="file" class="multi" maxlength="2" />
-              </div>
-              <div class="col-md-4">
-                <p>
-                  Use the
-                  <code>
-                    <strong>accept</strong>
-                  </code>property if you only want files of a certain extension to be selected Separate valid extensions with a "|", like this: "jpg|gif|png". (
-                  <span style="font-weight:bold; color:red;">server-side validation is always required</span>)
-                </p>
-                <pre>
-                  <code class="language-markup">&lt;input type="file" class="multi" accept="gif|jpg"/&gt;</code>
-                </pre>
-                <br/>
-                <br/>
-                <input type="file" class="multi" accept="gif|jpg" />
-              </div>
-            </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" accept="gif|jpg" />
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 3</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi"
+  accept="gif|jpg"
+  maxlength="3"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 3 files
+            <br/>Allowed extensions: gif, jpg.
           </div>
-        </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" accept="gif|jpg" maxlength="3" />
+          </form>
+          <div class="P5 Warning Bold">
+            Note that server-side validation is always required
+          </div>
+        </fieldset>
       </div>
 
+    </div>
 
-      <div class="container clear section" id="tab-Examples">
-        <h2>Usage Examples</h2>
-        <div class="container clear section" id="tab-Examples-Simple">
 
-          <div style="margin:20px 0; background-color:#ececec color:#f00; padding:10px; border:#ccc dotted 1px; color:#f00; font-weight:bold;">
-            This implementation does not require any jQuery experience. Just add
-            <code>class="multi"</code>and the plugin will do the rest.
+    <h3>Using the
+      <code>class</code> coderoperty</h3>
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 4</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi max-2"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 2 files.
+            <br/>Allowed extensions: any.
           </div>
-
-          <h3>Using Attributes</h3>
-          <div class="row">
-            <div class="col-md-4">
-              <fieldset style="border:0">
-                <legend>
-                  <strong>Example 1</strong>
-                </legend>
-                <pre>
-                  <code class="language-markup">&lt;input class="multi" maxlength="2"/&gt;</code>
-                </pre>
-                <div class="P5 B">
-                  Limit: 2 files.
-                  <br/>Allowed extensions: any.
-                </div>
-                <form action="" class="P10">
-                  <input type="file" class="multi" maxlength="2" />
-                </form>
-              </fieldset>
-            </div>
-            <div class="col-md-4">
-              <fieldset style="border:0">
-                <legend>
-                  <strong>Example 2</strong>
-                </legend>
-                <pre>
-                  <code class="language-markup">&lt;input class="multi" accept="gif|jpg"/&gt;</code>
-                </pre>
-                <div class="P5 B">
-                  Limit: no limit.
-                  <br/>Allowed extensions: gif and jpg.
-                </div>
-                <form action="" class="P10">
-                  <input type="file" class="multi" accept="gif|jpg" />
-                </form>
-              </fieldset>
-            </div>
-            <div class="col-md-4">
-              <fieldset style="border:0">
-                <legend>
-                  <strong>Example 3</strong>
-                </legend>
-                <pre>
-                  <code class="language-markup">&lt;input class="multi" accept="gif|jpg" maxlength="3"/&gt;</code>
-                </pre>
-                <div class="P5 B">
-                  Limit: 3 files
-                  <br/>Allowed extensions: gif, jpg.
-                </div>
-                <form action="" class="P10">
-                  <input type="file" class="multi" accept="gif|jpg" maxlength="3" />
-                </form>
-                <div class="P5 Warning Bold">
-                  Note that server-side validation is always required
-                </div>
-              </fieldset>
-            </div>
-          </div>
-
-          <hr/>
-
-          <h3>Using the
-            <code>class</code>property</h3>
-          <div class="row" <div class="col-md-4">
-            <fieldset style="border:0">
-              <legend>
-                <strong>Example 4</strong>
-              </legend>
-              <pre>
-                <code class="language-markup">&lt;input class="multi max-2"/&gt;</code>
-              </pre>
-              <div class="P5 B">
-                Limit: 2 files.
-                <br/>Allowed extensions: any.
-              </div>
-              <form action="" class="P10">
-                <input type="file" class="multi max-2" />
-              </form>
-            </fieldset>
-          </div>
-          <div class="col-md-4">
-            <fieldset style="border:0">
-              <legend>
-                <strong>Example 5</strong>
-              </legend>
-              <pre>
-                <code class="language-markup">&lt;input class="multi accept-gif|jpg"/&gt;</code>
-              </pre>
-              <div class="P5 B">
-                Limit: no limit.
-                <br/>Allowed extensions: gif, jpg.
-              </div>
-              <form action="" class="P10">
-                <input type="file" class="multi accept-gif|jpg" />
-              </form>
-            </fieldset>
-          </div>
-          <div class="col-md-4">
-            <fieldset style="border:0">
-              <legend>
-                <strong>Example 6</strong>
-              </legend>
-              <pre>
-                <code class="language-markup">&lt;input class="multi max-3 accept-gif|jpg"/&gt;</code>
-              </pre>
-              <div class="P5 B">
-                Limit: 3 files
-                <br/>Allowed extensions: gif, jpg.
-              </div>
-              <form action="" class="P10">
-                <input type="file" class="multi max-3 accept-gif|jpg" />
-              </form>
-              <div class="P5 Warning Bold">
-                Note that server-side validation is always required
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi max-2" />
+          </form>
+        </fieldset>
       </div>
-      <div class="container clear section" id="tab-Examples-Expert">
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 5</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi accept-gif|jpg"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: no limit.
+            <br/>Allowed extensions: gif, jpg.
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi accept-gif|jpg" />
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 6</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  class="multi max-3 accept-gif|jpg"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 3 files
+            <br/>Allowed extensions: gif, jpg.
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi max-3 accept-gif|jpg" />
+          </form>
+          <div class="P5 Warning Bold">
+            Note that server-side validation is always required
+          </div>
+        </fieldset>
+      </div>
+    </div>
 
 
-        <div style="margin:20px 0; background-color:#ececec color:#f00; padding:10px; border:#ccc dotted 1px; color:#f00; font-weight:bold;">
-          You must NOT use
-          <code>class="multi"</code>if you use any of the examples on this page.
-        </div>
+  </div>
+  <div class="container clear section" id="API">
 
 
-        <h2>Moving the file list</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset style="border:0">
-              <legend>
-                <strong>Example 7</strong>
-              </legend>
-              <p>This example populates the file list in a custom element</p>
-              <pre>
-                <code class="language-javascript">$(function() { // wait for document to load 
+    <h2>Advanced Examples</h2>
+    <div style="margin:10px 0; background-color:#ececec color:#f00; padding:10px; border:#ccc dotted 1px; color:#f00; font-weight:bold;">
+      Don't use <code>class="multi"</code> if you use any of the examples below this point. Invoke the plugin yourself.
+    </div>
+
+
+    <h3>Moving the file list</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 7</strong>
+          </legend>
+          <p>This example populates the file list in a custom element</p>
+          <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T7').MultiFile({
     list: '#T7-list'
   });
-});
-                </code>
-              </pre>
-              <script type="text/javascript" language="javascript">
-              $(function() { // wait for document to load 
-                $('#T7').MultiFile({
-                  list: '#T7-list'
-                });
-              });
-              </script>
-            </fieldset>
-          </div>
-          <div class="col-md-6">
-            <form action="" class="P10">
-              <input type="file" id="T7" />
-            </form>
-            <div id="T7-list" style="border:#999 solid 3px; padding:10px;">
-              This is div#T7-list - selected files will be populated here...
-              <br/>
-              <br/>
-            </div>
-          </div>
-          </div <hr/>
+});</code></pre>
+          <script type="text/javascript" language="javascript">
+          $(function() { // wait for document to load 
+            $('#T7').MultiFile({
+              list: '#T7-list'
+            });
+          });
+          </script>
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <form action="" class="P10">
+          <input type="file" id="T7" />
+        </form>
+        <div id="T7-list" style="border:#999 solid 3px; padding:10px;">
+          This is div#T7-list - selected files will be populated here...
+          <br/>
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <h2>Customising the file list</h2>
-          <table summary="MultiFile Upload Demos" width="100%" cellspacing="10">
-            <tr>
-              <td valign="top" width="50%">
-                <fieldset style="border:0">
-                  <legend>
-                    <strong>Example 8 A</strong>
-                  </legend>
-                  <p>Use a custom 'remove' image in the file list</p>
-                  <pre>
-                    <code class="language-javascript">$(function() { // wait for document to load 
+  <h3>Customising the file list</h3>
+  <div class="row">
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+
+      <fieldset style="border:0">
+        <legend>
+          <strong>Example 8 A</strong>
+        </legend>
+        <p>Use a custom 'remove' image in the file list</p>
+        <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T8A').MultiFile({
     STRING: {
       remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
     }
   });
-});</code>
-                  </pre>
-                  <script type="text/javascript" language="javascript">
-                  $(function() { // wait for document to load 
-                    $('#T8A').MultiFile({
-                      STRING: {
-                        remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
-                      }
-                    });
-                  });
-                  </script>
-                </fieldset>
-              </td>
-              <td valign="top" width="50%">
-                <form action="" class="P10">
-                  <input type="file" id="T8A" />
-                </form>
-              </td>
-            </tr>
-          </table>
+});</code></pre>
+        <script type="text/javascript" language="javascript">
+        $(function() { // wait for document to load 
+          $('#T8A').MultiFile({
+            STRING: {
+              remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
+            }
+          });
+        });
+        </script>
+      </fieldset>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <form action="" class="P10">
+        <input type="file" id="T8A" />
+      </form>
+    </div>
 
-          <table summary="MultiFile Upload Demos" width="100%" cellspacing="10">
-            <tr>
-              <td valign="top" width="50%">
-                <fieldset style="border:0">
-                  <legend>
-                    <strong>Example 8 B</strong>
-                  </legend>
-                  <p>Customising all list content</p>
-                  <pre>
-                    <code class="language-javascript">$(function() { // wait for document to load 
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <fieldset style="border:0">
+        <legend>
+          <strong>Example 8 B</strong>
+        </legend>
+        <p>Customising all list content</p>
+        <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T8B').MultiFile({
     STRING: {
       file: '<em title="Click to remove" onclick="$(this).parent().prev().click()">$file</em>',
       remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
     }
   });
-});</code>
-                  </pre>
-                  <script type="text/javascript" language="javascript">
-                  $(function() { // wait for document to load 
-                    $('#T8B').MultiFile({
-                      STRING: {
-                        file: '<em title="Click to remove" onclick="$(this).parent().prev().click()">$file</em>',
-                        remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
-                      }
-                    });
-                  });
-                  </script>
-                </fieldset>
-              </td>
-              <td valign="top" width="50%">
-                <form action="" class="P10">
-                  <input type="file" id="T8B" />
-                </form>
-              </td>
-            </tr>
-          </table>
+});</code></pre>
+        <script type="text/javascript" language="javascript">
+        $(function() { // wait for document to load 
+          $('#T8B').MultiFile({
+            STRING: {
+              file: '<em title="Click to remove" onclick="$(this).parent().prev().click()">$file</em>',
+              remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
+            }
+          });
+        });
+        </script>
+      </fieldset>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <form action="" class="P10">
+        <input type="file" id="T8B" />
+      </form>
+    </div>
+  </div>
 
-          <hr/>
+  <hr/>
 
-          <h2>Using events</h2>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <fieldset style="border:0">
-                  <legend>
-                    <strong>Example 9</strong>
-                  </legend>
-                  <p>
-                    The events available are:
-                    <br/>onFileAppend, afterFileAppend, onFileSelect, afterFileSelect, onFileRemove, afterFileRemove
-                  </p>
-                  <p>
-                    The arguments passed on to each event handler are:
-                    <br/>element: file element which triggered the event
-                    <br/>value: the value of the element in question
-                    <br/>master_element: the original element containing all relevant settings
-                  </p>
-                  <pre>
-                    <code class="language-javascript">$(function() { // wait for document to load 
+  <h3>Using events</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 9</strong>
+          </legend>
+          <p>
+            The events available are:
+            <br/>onFileAppend, afterFileAppend, onFileSelect, afterFileSelect, onFileRemove, afterFileRemove
+          </p>
+          <p>
+            The arguments passed on to each event handler are:
+            <br/>element: file element which triggered the event
+            <br/>value: the value of the element in question
+            <br/>master_element: the original element containing all relevant settings
+          </p>
+          <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T9').MultiFile({
     onFileRemove: function(element, value, master_element) {
       $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
@@ -401,82 +369,73 @@
       $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
     }
   });
-});</code>
-                  </pre>
-                  <script type="text/javascript" language="javascript">
-                  $(function() { // wait for document to load 
-                    $('#T9').MultiFile({
-                      onFileRemove: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
-                      },
-                      afterFileRemove: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>afterFileRemove - ' + value + '</li>')
-                      },
-                      onFileAppend: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>onFileAppend - ' + value + '</li>')
-                      },
-                      afterFileAppend: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>afterFileAppend - ' + value + '</li>')
-                      },
-                      onFileSelect: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>onFileSelect - ' + value + '</li>')
-                      },
-                      afterFileSelect: function(element, value, master_element) {
-                        $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
-                      }
-                    });
-                  });
-                  </script>
-                </fieldset>
-              </div>
-              <div class="col-md-6">
-                <form action="" class="P10">
-                  <input type="file" id="T9" />
-                </form>
-                <div style="border:#999 solid 3px; padding:10px;">
-                  This is div#F9-Log - selected files will be populated here...
-                  <br/>
-                  <ul id="F9-Log">
+});</code></pre>
+          <script type="text/javascript" language="javascript">
+          $(function() { // wait for document to load 
+            $('#T9').MultiFile({
+              onFileRemove: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
+              },
+              afterFileRemove: function(element, value, master_element) {
+                $('#F9-Log').append('<li>afterFileRemove - ' + value + '</li>')
+              },
+              onFileAppend: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileAppend - ' + value + '</li>')
+              },
+              afterFileAppend: function(element, value, master_element) {
+                $('#F9-Log').append('<li>afterFileAppend - ' + value + '</li>')
+              },
+              onFileSelect: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileSelect - ' + value + '</li>')
+              },
+              afterFileSelect: function(element, value, master_element) {
+                $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
+              }
+            });
+          });
+          </script>
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <form action="" class="P10">
+          <input type="file" id="T9" />
+        </form>
+        <div style="border:#999 solid 3px; padding:10px;">
+          This is div#F9-Log - selected files will be populated here...
+          <br/>
+          <ul id="F9-Log">
 
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <hr/>
+  <hr/>
 
-          <h2>Advanced Usage</h2>
-          <h3>Using your own selectors</h3>
-          <pre>
-            <code class="language-javascript">$(function(){
+  <h3>Using your own selectors</h3>
+  <pre><code class="language-javascript">$(function(){
   // wait for document to load
   $('#MyFileUpload').MultiFile();
-});</code>
-          </pre>
+});</code></pre>
 
-          <h3>Setting limit via script</h3>
-          <pre>
-            <code class="language-javascript">$(function(){
+  <h3>Setting limit via script</h3>
+  <pre><code class="language-javascript">$(function(){
   // wait for document to load
   $('#MyFileUpload').MultiFile(5 /*limit will be set to 5*/);
-});</code>
-          </pre>
+});</code></pre>
 
-          <h3>Advanced configuration</h3>
-          <pre>
-            <code class="language-javascript">$(function(){
+  <h3>Advanced configuration</h3>
+  <pre><code class="language-javascript">$(function(){
   // wait for document to load 
   $('#MyCoolFileUpload').MultiFile({
     max: 5, 
     accept: 'gif|jpg|png|bmp|swf'
   });
-});</code>
-          </pre>
+});</code></pre>
 
-          <h3>Customising visible strings for multi-lingual support</h3>
-          <pre>
-            <code class="language-javascript">$(function(){ 
+  <h3>Customising visible strings for multi-lingual support</h3>
+  <pre><code class="language-javascript">$(function(){ 
   // wait for document to load 
   $('#PortugueseFileUpload').MultiFile({ 
     STRING: { 
@@ -485,50 +444,63 @@
       denied:'Invalido arquivo de tipo $ext!' 
     } 
   }); 
-});</code>
-          </pre>
+});</code></pre>
 
-        </div>
-      </div>
+</div>
+</div>
 
-    </div>
-    <!--// tab-Examples //-->
+</div>
+<!--// Usage //-->
 
-    <div class="container clear section" id="tab-MultiLingual">
-      <h2>Multi-lingual support</h2>
-      <p>
-        The plugin doesn't have any additional languages built-in, but it's very easy to customise the messages to any language of your choosing. See the examples below...
-      </p>
-      <p>
-        NB.: This example has been configured to accept gif/pg files only in order to demonstrate the error messages.
-      </p>
-      <form action="" class="P10">
-        <input type="file" class="multi {accept:'gif|jpg', max:3, STRING: {remove:'Remover',selected:'Selecionado: $file',denied:'Invalido arquivo de tipo $ext!',duplicate:'Arquivo ja selecionado:\n$file!'}}" />
-      </form>
+<div class="container clear section" id="Locale">
+  <h2>Multi-lingual support</h2>
+  <p>
+    The plugin doesn't have any additional languages built-in, but it's very easy to customise the messages to any language of your choosing. See the examples below...
+  </p>
+  <p>
+    NB.: This example has been configured to accept gif/pg files only in order to demonstrate the error messages.
+  </p>
+  <form action="" class="P10">
+    <input type="file" multiple="multiple" class="multi {accept:'gif|jpg', max:3, STRING: {remove:'Remover',selected:'Selecionado: $file',denied:'Invalido arquivo de tipo $ext!',duplicate:'Arquivo ja selecionado:\n$file!'}}" />
+  </form>
 
-      <h3>Method 1: Using class property (require MetaData plugin)</h3>
-      <pre>
-        <code class="language-markup">&lt;input type="file" class="multi { accept:'gif|jpg', max:3, STRING:{ remove:'Remover', selected:'Selecionado: $file', denied:'Invalido arquivo de tipo $ext!', duplicate:'Arquivo ja selecionado:\n$file!' } }" /&gt;</code>
-      </pre>
+  <h3>Method 1: Using class property (requires the MetaData plugin)</h3>
+  <pre><code class="language-markup">&lt;input type="file"
+  class="multi {
+    accept:'gif|jpg',
+    max:3,
+    STRING:{ 
+      remove:'Remover', 
+      selected:'Selecionado: $file', 
+      denied:'Invalido arquivo de tipo $ext!', 
+      duplicate:'Arquivo ja selecionado:\n$file!' 
+    } 
+  }"
+/&gt;</code></pre>
 
-      <h3>Method 2: Programatically by ID (ONE element only, does not require MetaData plugin)</h3>
-      <pre>
-        <code class="language-markup">&lt;input type="file" id="PortugueseFileUpload" /&gt;</code>
-      </pre>
-      <pre>
-        <code class="language-javascript">$(function(){ $('#PortugueseFileUpload').MultiFile({ accept:'gif|jpg', max:3, STRING: { remove:'Remover', selected:'Selecionado: $file', denied:'Invalido arquivo de tipo $ext!', duplicate:'Arquivo ja selecionado:\n$file!' } }); });
-        </code>
-      </pre>
+  <h3>Method 2: Programatically by ID (ONE element only, does not require MetaData plugin)</h3>
+  <pre><code class="language-markup">&lt;input type="file" id="PortugueseFileUpload" /&gt;</code></pre>
+  <pre><code class="language-javascript">$(function(){
+  $('#PortugueseFileUpload').MultiFile({
+    accept:'gif|jpg', 
+    max:3, 
+    STRING: {
+      remove:'Remover',  
+      selected:'Selecionado: $file', 
+      denied:'Invalido arquivo de tipo $ext!', 
+      duplicate:'Arquivo ja selecionado:\n$file!'
+    }
+  });
+});</code></pre>
 
-      <h3>Method 3: Programatically (
-        <em>n</em>elements, does not require MetaData plugin)</h3>
-      <a target="_blank" href="http://plugins.jquery.com/node/1251">See this feature request for details</a>
-      <br/>
-      <pre>
-        <code class="language-markup">&lt;input type="file" class="multi-pt" /&gt; &lt;input type="file" class="multi-pt" /&gt; &lt;input type="file" class="multi-pt" /&gt;</code>
-      </pre>
-      <pre>
-        <code class="language-javascript">$(function(){
+  <h3>Method 3: Programatically (
+    <em>n</em> emlements, does not require MetaData plugin)</h3>
+  <a target="_blank" href="http://plugins.jquery.com/node/1251">See this feature request for details</a>
+  <br/>
+  <pre><code class="language-markup">&lt;input type="file" class="multi-pt" /&gt;
+&lt;input type="file" class="multi-pt" /&gt;
+&lt;input type="file" class="multi-pt" /&gt;</code></pre>
+  <pre><code class="language-javascript">$(function(){
   $('.multi-pt').MultiFile({
     accept:'gif|jpg', 
     max:3, 
@@ -539,217 +511,125 @@
       duplicate:'Arquivo ja selecionado:\n$file!'
     }
   });
-});</code>
-      </pre>
+});</code></pre>
 
-    </div>
-    <!--// tab-MultiLingual //-->
+</div>
 
 
-    <div class="container clear section" id="tab-Download">
-      <h2>Installation</h2>
-      
-      <h3>Required Files</h3>
-      <pre>
-        <code class="language-markup">&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.min.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt; &lt;script src=&quot;jquery.MultiFile.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;
-        </code>
-      </pre>
-      <h3>Optional Files</h3>
-      <p>
-        <a target="_blank" href="http://plugins.jquery.com/project/metadata/"><u>Metadata Plugin</u></a>
-        <br/>This great plugin can be used to configure the plugin via the class parameter.
-        <br/>
-        <small>You can also <a href='jquery.MetaData.js'>download the version being used on this page</a>
-        </small>
-      </p>
-      <p>
-        <a target="_blank" href="http://www.malsup.com/jquery/block/"><u>BlockUI Plugin</u></a>
-        <br/>Used to show 'pretty' error messages, instead of the browser's alert() function.
-        <br/>
-        <small>You can also <a href='jquery.blockUI.js'>download the version being used on this page</a>
-        </small>
-      </p>
-      <p>
-        <a target="_blank" href="http://www.malsup.com/jquery/form/"><u>Form Plugin</u></a>
-        <br/>Used to submit forms via Ajax.
-      </p>
+<div class="container clear section" id="Install">
+  <h2>Installation</h2>
 
-      <h2>SVN Repository</h2>
-      <p>
-        
-        <a target="_blank" href="http://code.google.com/p/jquery-multifile-plugin/">GitHub</a>
-        on the official
-        <a target="_blank" href="http://code.google.com/p/jquery-multifile-plugin/">Google Code Project Page</a>.
-      </p>
-      <table cellspacing="5">
-        <tr>
-          <td valign="top" align="right">SVN Checkout:</td>
-          <td valign="top">
-            <img src="documentation/js.gif" style="margin:0 5px 5px 0; float:left;">
-            <a target="_blank" href="http://code.google.com/p/jquery-multifile-plugin/source/checkout">
-              <strong>SVN Checkout Instructions</strong>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top" align="right">Browse Online:</td>
-          <td valign="top">
-            <img src="documentation/folder.gif" style="margin:0 5px 5px 0; float:left;">
-            <a target="_blank" href="http://code.google.com/p/jquery-multifile-plugin/source/browse/">
-              <strong>Browse Source</strong>
-            </a>
-          </td>
-        </tr>
-      </table>
+  <h3>Requirements</h3>
+  <p>You'll need <a href="http://jquery.com/" target="_blank">jQuery</a>, we recommend using <a href="https://developers.google.com/speed/libraries/devguide#jquery" target="_blank">Google Hosted Libraries</a>.</p>
+  <pre><code class="language-markup">&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;</code></pre>
 
-      <h2>Alternative Download - From this website</h2>
-      <p>
-        Just in case it's the end of the world and the Google Code site becomes unavailable, the project files can also be downloaded from this site.
-        <br/>However, please note that this site is updated periodically whereas the Google Code project is kept up-to-date almost instantaneously. If you'd like the very latest version of this plugin
-        <strong>you are advised to use the links above and download the files from Google Code</strong>
-        - this will ensure the files you download have the very latest features and bug fixes.
-      </p>
-      <table cellspacing="5">
-        <tr>
-          <td valign="top" align="right">Full Package:</td>
-          <td valign="top">
-            <img src="documentation/download.gif" style="margin:0 5px 5px 0; float:left;">v
-            <strong>1.48</strong>
-            <a href="./multifile.zip">
-              <strong>multiple-file-upload.zip</strong>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top" align="right"></td>
-          <td valign="top">
-            <div class="Clear" style="margin:0 0 10px 0;" onClick="$('a:eq(0)',this).click()">
-              <strong class="Yes" style="background:#090; color:#fff; padding:3px;">Stay up-to-date!</strong>
-              <span style="padding:3px;">
-                Major updates will be announced on
-                <a target="_blank" href="http://twitter.com/fyneworks" class="external">Twitter</a>:
-                <a target="_blank" href="http://twitter.com/fyneworks" class="external">@fyneworks</a>
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top" align="right">Core Files:</td>
-          <td valign="top">
-            These are the individual required files (
-            <span class="Warning">already included in the zip package above</span>)
-            <ul>
-              <li>
-                <a href='./jquery.MultiFile.js'>
-                  <strong>jQuery.MultiFile.js</strong>
-                </a>(packed version: <a href="./jquery.MultiFile.pack.js">jQuery.MultiFile.pack.js</a>)</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td valign="top" align="right">jQuery:</td>
-          <td valign="top">
-            <a target="_blank" href="http://code.jquery.com/jquery-1.9.1.min.js">jquery-1.9.1.min.js</a> (<a target="_blank" href="http://www.jquery.com/">see jQuery.com</a>)
-          </td>
-        </tr>
-      </table>
+  <h3>The plugin</h3>
+  <p>
+    Either <a href="https://github.com/fyneworks/multifile/archive/master.zip">download</a> the latest version and host it on your own server
+  </p>
+  <pre><code class="language-markup">&lt;script src=&quot;path/to/your/jquery.MultiFile.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;</code></pre>
 
-    </div>
-    <!--// tab-Download //-->
+  <p>
+    <strong>OR</strong> strongotlink it directly from <a target="_blank" href="https://github.com/fyneworks/multifile/blob/master/jQuery.MultiFile.min.js">GitHub</a>
+  </p>
+  <pre><code class="language-markup">&lt;script src=&quot;//github.com/fyneworks/multifile/blob/master/jQuery.MultiFile.min.js&quot; type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;&lt;/script&gt;</code></pre>
 
-    <div class="container clear section" id="tab-Support">
+</div>
 
-      <h2>Support</h2>
-      <p>
-        | <a target="_blank" href="https://github.com/fyneworks/multifile/issues">Report a bug</a>
-        | <a target="_blank" href="https://github.com/fyneworks/multifile">Collaborate (GitHub)</a>
-      </p>
 
-      <h2>Credit where it's due...</h2>
-      <ul>
-        <li>Fyneworks.com <a href="http://www.fyneworks.com/">professional web design</a> and <a href="http://www.fyneworks.com/">google SEO experts</a>
-        </li>
-        <li>Dean Edwards - Author of <a href="http://dean.edwards.name/packer/">JS Packer</a> used to compress the plugin</li>
-        <li>Adrian Wróbel - Fixed a nasty bug so the script could work perfectly in Opera</li>
-        <li>Jonas Wagner - Modified plugin so newly created elements are an exact copy of the original element (ie.: persists attributes)</li>
-        <li>Mike Alsup - Author of several <a href="http://www.malsup.com/jquery/">jQuery Plugins</a>...
-          <ul>
-            <li>Suggested solution to element naming convention / server-side handling</li>
-            <li><a href="http://www.malsup.com/jquery/form/">Form plugin</a> - Used to submit forms via ajax</li>
-            <li><a href="http://www.malsup.com/jquery/blockUI/">blockUI plugin</a> - Used to show pretty error messages</li>
-          </ul>
-        </li>
-        <li>Julien Phalip - Identified conflict with variable name 'class' in several methods</li>
-      </ul>
-    </div>
-    <!--// tab-Support //-->
+<div class="container clear section" id="Support">
+  <h2>Support</h2>
+  <p>
+    This project started a a very long time ago... and it's been dormant since 2009! Support has been shockingly bad, we admit, but we would like to engage more actively with our users and the jQuery community from now on. So as of April 2014, we've left <a href="https://code.google.com/p/jquery-fyneworks/" target="_blank">Google Code</a> behind and will be starting a fresh project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>. Our other projects (<a href="http://www.fyneworks.com/jquery/star-rating">Star Rating</a> &amp; <a href="http://www.fyneworks.com/jquery/CKEditor">CKEditor</a> will follow shortly.)
+  </p>
+  <p>
+    We very much encourage and would love you all to report issues, contribue and discuss this project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>.
+  </p>
+
+</div>
 
 
 
 
 
 
-    <!--//
+<!--//
     ####################################
     #
     #         * END CONTENT *
     #
     ####################################
     //-->
-    <div class="container clear section" id="tab-License">
-      <h2>License Information</h2>
+<div class="container clear section" id="Credit">
+  <h2>Credit</h2>
 
-      <h3>What's the catch?</h3>
-      <p>
-        <strong>There's no catch</strong>. Use it, abuse it - even take it apart and modify it if you know what you're doing. You don't have to, but if you're feeling generous you can link back to this website (instructions below).
-      </p>
+  <h3>...where it's due!</h3>
+  <ul>
+    <li>Fyneworks.com <a href="http://www.fyneworks.com/">professional web design</a> and <a href="http://www.fyneworks.com/">google SEO experts</a>
+    </li>
+    <li>Dean Edwards - Author of <a href="http://dean.edwards.name/packer/">JS Packer</a> used to compress the plugin</li>
+    <li>Adrian Wróbel - Fixed a nasty bug so the script could work perfectly in Opera</li>
+    <li>Jonas Wagner - Modified plugin so newly created elements are an exact copy of the original element (ie.: persists attributes)</li>
+    <li>Mike Alsup - Author of several <a href="http://www.malsup.com/jquery/">jQuery Plugins</a>...
+      <ul>
+        <li>Suggested solution to element naming convention / server-side handling</li>
+        <li><a href="http://www.malsup.com/jquery/form/">Form plugin</a> - Used to submit forms via ajax</li>
+        <li><a href="http://www.malsup.com/jquery/blockUI/">blockUI plugin</a> - Used to show pretty error messages</li>
+      </ul>
+    </li>
+    <li>Julien Phalip - Identified conflict with variable name 'class' in several methods</li>
+  </ul>
 
-      <h3>Attribute this work</h3>
-      <div class="license-info">
-        <table cellspacing="5" width="100%">
-          <tr>
-            <td width="160" align="right">Attribution link:</td>
-            <td valign="top">&copy; <a href="http://www.fyneworks.com/">Fyneworks.com</a>
-            </td>
-          </tr>
-          <tr>
-            <td width="160" align="right">HTML Code:</td>
-            <td valign="top">
-              <input type="text" onFocus="this.select();" onClick="this.select()" readonly="" style="width:100%;" value="&amp;copy; &lt;a href=&quot;http://www.fyneworks.com/&quot;&gt;Fyneworks.com&lt;/a&gt;" />
-            </td>
-          </tr>
-        </table>
-      </div>
-      <h3>License Info</h3>
-      <div class="license-info">
-        <table cellspacing="5" width="100%">
-          <tr>
-            <td valign="middle">
-              <strong>Multiple File Selection Plugin</strong>
-              by <a href="http://www.fyneworks.com/">Fyneworks.com</a>
-              is licensed,
-              <a target="_blank" href="http://jquery.org/license">as jQuery is</a>, under the
-              <a target="_blank" href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
-            </td>
-            <td width="100">
-              <a target="_blank" href="http://creativecommons.org/licenses/GPL/2.0/">
-                <img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png" />
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <pre class="copyright">Copyright &copy; 2008 <a href="http://www.fyneworks.com/">Fyneworks.com</a>
-                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!--// License Info //-->
-    </div>
 
+  <h3>License Info</h3>
+  <div class="license-info">
+    <table cellspacing="5" width="100%">
+      <tr>
+        <td valign="middle">
+          <strong>Multiple File Selection Plugin</strong>
+          by <a href="http://www.fyneworks.com/">Fyneworks.com</a>
+          is licensed,
+          <a target="_blank" href="http://jquery.org/license">as jQuery is</a>, under the
+          <a target="_blank" href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>.
+        </td>
+        <td width="100">
+          <a target="_blank" href="http://creativecommons.org/licenses/GPL/2.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png" />
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <pre class="copyright">Copyright &copy; 2008 <a href="http://www.fyneworks.com/">Fyneworks.com</a>
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.</pre>
+        </td>
+      </tr>
+    </table>
   </div>
-  <!--// tabs //-->
+
+</div>
+
+</div>
 
 </div>
 

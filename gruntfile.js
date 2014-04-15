@@ -5,12 +5,8 @@ module.exports = function(grunt) {
 
     sass: {
       dist: {
-        options:{
-          //outputStyle: 'compressed'
-        },
-        files: {
-          'docs.css' : 'docs/docs.scss'
-        }
+        options:{/*outputStyle: 'compressed'*/ /* cssmin will do this for us */},
+        files: {'docs.css' : 'docs/docs.scss'}
       },
     },
     
@@ -23,9 +19,7 @@ module.exports = function(grunt) {
           processImport: true,
           banner: '/* <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %> */',
         },
-        files: {
-          'docs.css': ["docs.css"]
-        }
+        files: {'docs.css': ["docs.css"]}
       }
     },
     
@@ -39,9 +33,7 @@ module.exports = function(grunt) {
             timestamp: "<%= new Date().getTime() %>"
           }
         },
-        files: {
-          "docs.html": ["docs/docs.jade"]
-        }
+        files: {"docs.html": ["docs/docs.jade"]}
       }
     },
     
@@ -53,18 +45,28 @@ module.exports = function(grunt) {
         compress: true /*{drop_console: true}*/,
         mangle: true /*{except: ['jQuery','fwx']}*/
       },
-      my_target: {
+      production: {
         options: {},
-        files: {
-          'jQuery.MultiFile.min.js': 'jQuery.MultiFile.js'
-        }
+        files: {'jQuery.MultiFile.min.js': 'jQuery.MultiFile.js'}
       }
     },
     
     // ---------------------
+    
+    shell: {
+      beep: {
+        command: '',
+        options: {stdout: true}
+      }
+    },
+
+    // ---------------------
 
     watch: {
-      jade: { files: ['docs/*.jade','docs/*.html'], tasks: ['jade'], options: {} },
+      options:{
+        reload: true
+      },
+      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade'], options: {} },
       scss: { files: ['docs/*.scss'], tasks: ['sass'], options: {} },
       css: { files: ['*.css'], tasks: ['cssmin'], options: {} },
       js: { files: ['jquery.MultiFile.js'], tasks: ['uglify'], options: {} }
@@ -78,6 +80,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('default', ['uglify']);
   grunt.registerTask('min', ['uglify']);
@@ -88,7 +91,7 @@ module.exports = function(grunt) {
   // ---------------------
   
   grunt.event.on('watch', function(action, filepath, target) {
-    grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+    //grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
   });
 
   // ---------------------
