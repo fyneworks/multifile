@@ -110,11 +110,11 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['uglify:dist']);
   grunt.registerTask('build', ['uglify:dist']);
   grunt.registerTask('min', ['uglify:dist']);
-  grunt.registerTask('css', ['sass:docs','cssmin:docs']);
-  grunt.registerTask('doc', ['jade:docs','sass:docs','cssmin:docs']);
-  grunt.registerTask('all', ['uglify:dist','jade:docs','sass:docs','cssmin:docs']);
+  grunt.registerTask('css', ['sass:docs cssmin:docs']);
+  grunt.registerTask('doc', ['jade:docs sass:docs cssmin:docs']);
+  grunt.registerTask('all', ['uglify:dist jade:docs sass:docs cssmin:docs']);
   grunt.registerTask('beep', ['shell:beep_twice']);
-  grunt.registerTask('deploy', ['gitpush']);
+  grunt.registerTask('deploy', ['gitpush:remote']);
 
   // ---------------------
   
