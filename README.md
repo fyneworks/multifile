@@ -2,7 +2,18 @@
 
 ##Overview
 
-This jQuery Multiple File Selection Plugin ($.MultiFile) is a non-obstrusive plugin for jQuery that helps users easily select multiple files for upload quickly and easily on your server whilst also providing some basic validation functionality to help developers idenfity simple errors, without having to submit the form (ie.: upload files).
+This jQuery Multiple File Selection Plugin ($.MultiFile) is a non-obstrusive and crucially **non-opinionated** plugin for jQuery that helps your users easily multiple files for upload. It helps you implement a basic interface to improve the file selection experience of your users. It also provides 3 simple methods of validation: accepted extensions, number of files and total size.
+
+---
+
+##Server-Side Implementation
+
+This plugin will never deal with the server-side implementation of your upload solution. This plugin will not upload your files. If that's what you want, we recommend you check them out one of the
+[many](http://www.uploadify.com/"),
+[many](http://www.plupload.com/")
+[many](http://blueimp.github.io/jQuery-File-Upload/") great tools out there which provide a full solution - with image previews, progress bars and extensive support for many environments (`.NET`, `PHP`, `Java`, etc...).
+
+And remember..... **server-side validation is always required**.
 
 ---
 
@@ -13,22 +24,20 @@ Add the required javascript files to your document, just before the `</html>` ta
 Add [jQuery](https://developers.google.com/speed/libraries/devguide#jquery) to your page. We strongly recommend you make use of Google's Hosted Libraries service.
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
-				type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 ```
 
 Then add the plugin (after jQuery)
 
 ```html
-<script src="/path/to/plugin/jquery.MultiFile.min.js"
-				type="text/javascript"></script>
+<script src="/path/to/plugin/jquery.MultiFile.min.js"></script>
 ```
 
 ---
 
 ##Recommended Usage (HTML5)
 
-Just add the `class="multi"` and `multiple="multiple"` attributes to your file input element, like this:
+Just add `multiple="multiple"` and `class="multi"` attributes to your `<input type="file"/>`, like this:
 
 ```html
 <input type="file" multiple="multiple" class="multi"/>
