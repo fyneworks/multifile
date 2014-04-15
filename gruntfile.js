@@ -64,12 +64,18 @@ module.exports = function(grunt) {
     
     gitcommit: {
       local: {
-        options: { message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' }
+        options: {
+          branch: 'dev',
+          message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>'
+        }
       },
     },
     gitpush: {
       remote: {
-        options: { message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>' }
+        options: {
+          branch: 'dev',
+          message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>'
+        }
       },
     },
 
