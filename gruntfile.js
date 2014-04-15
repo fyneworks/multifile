@@ -54,8 +54,8 @@ module.exports = function(grunt) {
     // ---------------------
     
     shell: {
-      beep: {
-        command: '',
+      beep_twice: {
+        command: 'echo  echo ',
         options: {stdout: true}
       }
     },
@@ -66,10 +66,10 @@ module.exports = function(grunt) {
       options:{
         reload: true
       },
-      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade'], options: {} },
-      scss: { files: ['docs/*.scss'], tasks: ['sass'], options: {} },
-      css: { files: ['*.css'], tasks: ['cssmin'], options: {} },
-      js: { files: ['jquery.MultiFile.js'], tasks: ['uglify'], options: {} }
+      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade','beep'], options: {} },
+      scss: { files: ['docs/*.scss'], tasks: ['sass','beep'], options: {} },
+      css: { files: ['*.css'], tasks: ['cssmin','beep'], options: {} },
+      js: { files: ['jquery.MultiFile.js'], tasks: ['uglify','beep'], options: {} }
     }
   });
 
@@ -87,6 +87,8 @@ module.exports = function(grunt) {
   grunt.registerTask('css', ['sass','cssmin']);
   grunt.registerTask('doc', ['jade','sass','cssmin']);
   grunt.registerTask('all', ['uglify','jade','sass','cssmin']);
+  
+  grunt.registerTask('beep', ['shell:beep_twice']);
 
   // ---------------------
   
