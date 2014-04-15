@@ -23,6 +23,9 @@
     "url": "https://github.com/fyneworks/multifile/issues"
   },
   "homepage": "https://github.com/fyneworks/multifile",
+  "dependencies": {
+    "jQuery": "~1.7.3"
+  },
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-sass": "~0.12.1",
