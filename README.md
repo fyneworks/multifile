@@ -2,7 +2,9 @@
 
 ##Overview
 
-This jQuery Multiple File Selection Plugin ($.MultiFile) is a non-obstrusive and crucially **non-opinionated** plugin for jQuery that helps your users easily multiple files for upload. It helps you implement a basic interface to improve the file selection experience of your users. It also provides 3 simple methods of validation: accepted extensions, number of files and total size.
+MultiFile ($.MultiFile) is a non-obstrusive and crucially **non-opinionated** plugin for jQuery that helps your users easily select multiple files for upload.
+
+It helps you implement a basic interface to improve the file selection experience of your users whilst providing you, the developer, with 3 simple methods of validation: accepted extensions, number of files and total size.
 
 ---
 
@@ -81,6 +83,4 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ##Continous Integration with Travis CI
 
-Master: [![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile)
-
-Dev: [![Build Status](https://travis-ci.org/fyneworks/multifile.svg?branch=dev)](https://travis-ci.org/fyneworks/multifile)
+[![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile): full build history on [Travis CI]((https://travis-ci.org/fyneworks/multifile))
