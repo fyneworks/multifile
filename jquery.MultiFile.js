@@ -12,6 +12,10 @@ if (window.jQuery)(function ($) {
 	"use strict";
 	/*# AVOID COLLISIONS #*/
 
+	// size label function (shows kb and mb where accordingly)
+	function sl(x) {
+		return x > 1048576 ? (x / 1048576).toFixed(1) + 'Mb' : (x==1024?'1Mb': (x / 1024).toFixed(1) + 'Kb' )
+	};
 
 	// plugin initialization
 	$.fn.MultiFile = function (options) {
@@ -26,10 +30,8 @@ if (window.jQuery)(function ($) {
 					$.fn.MultiFile.apply($(this), args);
 				});
 			};
-			// Invoke API method handler
-			$.fn.MultiFile[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
-			// Quick exit...
-			return this;
+			// Invoke API method handler (and return whatever it wants to return)
+			return $.fn.MultiFile[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
 		};
 
 		// Accept number
@@ -105,12 +107,18 @@ if (window.jQuery)(function ($) {
 					o.accept = (MultiFile.e.className.match(/\b(accept\-[\w\|]+)\b/gi)) || '';
 					o.accept = new String(o.accept).replace(/^(accept|ext)\-/i, '');
 				};
-				// limit single file size?
+				// limit total pay load size
 				if (!(o.maxsize > 0) /*IsNull(MultiFile.maxsize)*/ ) {
-					o.maxsize = (String(MultiFile.e.className.match(/\b(maxsize|size)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
+					o.maxsize = (String(MultiFile.e.className.match(/\b(maxsize|maxload|size)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
 					if (!(o.maxsize > 0)) o.maxsize = -1;
 					else o.maxsize = String(o.maxsize).match(/[0-9]+/gi)[0];
 				};
+
+				//===
+
+				// size options are accepted in kylobytes, so multiple them by 1024
+				if(o.maxfile>1) o.maxfile = o.maxfile * 1024;
+				if(o.maxsize>1) o.maxsize = o.maxsize * 1024;
 
 				//===
 
@@ -298,8 +306,8 @@ if (window.jQuery)(function ($) {
 							};
 
 							// limit the max size of individual files selected
-							if (MultiFile.maxsize > 0 && s > 0 && s > MultiFile.maxsize) {
-								ERROR[ERROR.length] = MultiFile.STRING.toobig.replace('$file', v.match(/[^\/\\]+$/gi).replace('$size', sl(s) + ' > ' + sl(MultiFile.maxsize));
+							if (MultiFile.maxfile>0 && s>0 && s>MultiFile.maxfile) {
+								ERROR[ERROR.length] = MultiFile.STRING.toobig.replace('$file', v.match(/[^\/\\]+$/gi)).replace('$size', sl(s) + ' > ' + sl(MultiFile.maxfile));
 								MultiFile.trigger('onFileTooBig', this, MultiFile, [file]);
 							};
 
@@ -322,14 +330,9 @@ if (window.jQuery)(function ($) {
 							MultiFile.trigger('onFileTooMany', this, MultiFile, newfs);
 						};
 
-						// size label function (shows kb and mb where accordingly)
-						function sl(x) {
-							return x > 1048576 ? (x / 1048576).toFixed(1) + 'Mb' : (x / 1048576).toFixed(1) + 'Kb'
-						};
-
 						// limit the max size of files selected
-						if (MultiFile.total_maxsize > 0 && total_size > MultiFile.total_maxsize) {
-							ERROR[ERROR.length] = MultiFile.STRING.toomuch.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.total_maxsize));
+						if (MultiFile.maxsize > 0 && total_size > MultiFile.maxsize) {
+							ERROR[ERROR.length] = MultiFile.STRING.toomuch.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
 							MultiFile.trigger('onFileTooMuch', this, MultiFile, newfs);
 						};
 
@@ -409,18 +412,32 @@ if (window.jQuery)(function ($) {
 					//# Trigger Event! onFileAppend
 					if (!MultiFile.trigger('onFileAppend', slave, MultiFile, files)) return false;
 					//# End Event!
-
+					
+					var names = [];
 					$.each(files, function (i, file) {
+						var v = String(file.name || '' );
+						names[names.length] =
+							(
+								'<span class="MultiFile-title" title="' + MultiFile.STRING.selected + '">'
+									+ MultiFile.STRING.file +
+								'</span>'
+							)
+							.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
+							.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
+							.replace(/\$(size)/gi, sl(file.size || 0))
+						;
+					});
+					names = names.join(', ');
+
+					//$.each(files, function (i, file) {
 						// Create label elements
 						var
 							r = $('<div class="MultiFile-label"></div>'),
-							v = String(file.name || '' /*.attr('value)*/ ),
-							a = $('<span class="MultiFile-title" title="' + MultiFile.STRING.selected.replace('$file', v) + '">' + MultiFile.STRING.file.replace('$file', v.match(/[^\/\\]+$/gi)[0]) + '</span>'),
 							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
 								.click(function () {
 
 									//# Trigger Event! onFileRemove
-									if (!MultiFile.trigger('onFileRemove', slave, MultiFile, [file])) return false;
+									if (!MultiFile.trigger('onFileRemove', slave, MultiFile, files)) return false;
 									//# End Event!
 
 									MultiFile.n--;
@@ -440,21 +457,29 @@ if (window.jQuery)(function ($) {
 
 									// rebuild array with the files that are left.
 									var newfs = [];
-									for (var f in MultiFile.slaves) {
-										var files = f.files || [{
-													name: this.value,
-													size: 0,
-													type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
-												}];
-										// make a normal array
-										$.each(files, function (i, file) {
-											newfs[newfs.length] = file;
-										});
+									for (var x in MultiFile.slaves) {
+										var f = MultiFile.slaves[x];
+										if(f!=null && f!=undefined){
+											var files = ((f.files&&f.files.length) ? f.files : null) || [{
+														name: this.value,
+														size: 0,
+														type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
+													}];
+											// make a normal array
+											$.each(files, function (i, file) {
+												if(file.name!=undefined)
+													newfs[newfs.length] = file;
+											});
+										};
 									};
 									MultiFile.files = newfs;
 
 									//# Trigger Event! afterFileRemove
-									if (!MultiFile.trigger('afterFileRemove', slave, MultiFile, [file])) return false;
+									if (!MultiFile.trigger('afterFileRemove', slave, MultiFile, files)) return false;
+									//# End Event!
+
+									//# Trigger Event! onFileChange
+									if (!MultiFile.trigger('onFileChange', slave, MultiFile, MultiFile.files)) return false;
 									//# End Event!
 
 									return false;
@@ -462,13 +487,17 @@ if (window.jQuery)(function ($) {
 
 						// Insert label
 						MultiFile.list.append(
-							r.append(b, ' ', a)
+							r.append(b, ' ', names)
 						);
 
-					});
+					//}); // each file?
 
 					//# Trigger Event! afterFileAppend
 					if (!MultiFile.trigger('afterFileAppend', slave, MultiFile, files)) return false;
+					//# End Event!
+
+					//# Trigger Event! onFileChange
+					if (!MultiFile.trigger('onFileChange', slave, MultiFile, MultiFile.files)) return false;
 					//# End Event!
 
 				}; // MultiFile.addToList
@@ -520,6 +549,63 @@ if (window.jQuery)(function ($) {
 
 
 		/**
+		 * This method exposes the array of selected files
+		 *
+		 * Returns an array of file objects
+		 *
+		 * @name files
+		 * @type Array
+		 * @cat Plugins/MultiFile
+		 * @author Diego A. (http://www.fyneworks.com/)
+		 *
+		 * @example $('#selector').MultiFile('files');
+		 */
+		files: function () {
+			var mf = this.data('MultiFile');
+			if(!mf) return !console.log('MultiFile plugin not initialized');
+			return mf.files || [];
+		},
+
+
+		/**
+		 * This method exposes the plugin's sum of the sizes of all files selected
+		 *
+		 * Returns size (in bytes) of files selected
+		 *
+		 * @name size
+		 * @type Number
+		 * @cat Plugins/MultiFile
+		 * @author Diego A. (http://www.fyneworks.com/)
+		 *
+		 * @example $('#selector').MultiFile('size');
+		 */
+		size: function () {
+			var mf = this.data('MultiFile');
+			if(!mf) return !console.log('MultiFile plugin not initialized');
+			return mf.total_size || [];
+		},
+
+
+		/**
+		 * This method exposes the plugin's tally of how many files have been selected
+		 *
+		 * Returns number (a count) of files selected
+		 *
+		 * @name count
+		 * @type Number
+		 * @cat Plugins/MultiFile
+		 * @author Diego A. (http://www.fyneworks.com/)
+		 *
+		 * @example $('#selector').MultiFile('size');
+		 */
+		count: function () {
+			var mf = this.data('MultiFile');
+			if(!mf) return !console.log('MultiFile plugin not initialized');
+			return mf.files.length || [];
+		},
+
+
+		/**
 		 * This utility makes it easy to disable all 'empty' file elements in the document before submitting a form.
 		 * It marks the affected elements so they can be easily re-enabled after the form submission or validation.
 		 *
@@ -539,6 +625,11 @@ if (window.jQuery)(function ($) {
 			$('input:file.MultiFile').each(function () {
 				if ($(this).val() == '') o[o.length] = this;
 			});
+
+			// automatically re-enable for novice users
+			window.clearTimeout($.fn.MultiFile.reEnableTimeout);
+			$.fn.MultiFile.reEnableTimeout = window.setTimeout($.fn.MultiFile.reEnableEmpty, 500);
+			
 			return $(o).each(function () {
 				this.disabled = true
 			}).addClass(klass);
@@ -621,8 +712,8 @@ if (window.jQuery)(function ($) {
 	$.fn.MultiFile.options = { //$.extend($.fn.MultiFile, { options: {
 		accept: '', // accepted file extensions
 		max: -1, // maximum number of selectable files
-		maxsize: -1, // maximum size of a single file
-		total_maxsize: -1, // maximum size of entire payload
+		maxfile: -1, // maximum size of a single file
+		maxsize: -1, // maximum size of entire payload
 
 		// name to use for newly created elements
 		namePattern: '$name', // same name by default (which creates an array)
@@ -666,7 +757,7 @@ if (window.jQuery)(function ($) {
 	*/
 
 	// Native input reset method - because this alone doesn't always work: $(element).val('').attr('value', '')[0].value = '';
-	$.fn.reset = function () {
+	$.fn.reset = $.fn.reset || function () {
 		return this.each(function () {
 			try {
 				this.reset();
