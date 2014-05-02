@@ -1,5 +1,5 @@
 /*
- ### jQuery Multiple File Selection Plugin v1.48 - 2013-02-19 ###
+ ### jQuery Multiple File Selection Plugin v2.0.0 - 2014-05-01 ###
  * Home: http://www.fyneworks.com/jquery/multifile/
  * Code: http://code.google.com/p/jquery-multifile-plugin/
  *
@@ -130,11 +130,19 @@ if (window.jQuery)(function ($) {
 					},
 					trigger: function (event, element) {
 						var handler = MultiFile[event],
-							value = $(element).attr('value');
-						if (handler) {
-							var returnValue = handler(element, value, MultiFile);
-							if (returnValue != null) return returnValue;
-						}
+								files = (this.files?this.files[0]:null) || [{
+													name: this.value,
+													size: 0,
+													type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
+												}]
+						;
+						if (handler)
+							$.each(files,function(i, file){
+								console.log(file);
+								var value = file.name;
+								var returnValue = handler(element, value, MultiFile, file);
+								if (returnValue != null) return returnValue;
+							});
 						return true;
 					}
 				});
