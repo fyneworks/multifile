@@ -518,7 +518,8 @@ $(function(){
               <li>onFileDuplicate</li>
               <li>onFileInvalid</li>
               <li>onFileTooMany</li>
-              <li>OnFileTooBig</li>
+              <li>onFileTooBig</li>
+              <li>onFileTooMuch</li>
             </ul>
           </p>
       </div>
@@ -559,17 +560,20 @@ $(function(){
     afterFileSelect: function(element, value, master_element) {
       $('#F9-Log').append('&lt;li&gt;afterFileSelect - ' + value + '&lt;/li&gt;')
     },
-    afterFileInvalid: function(element, value, master_element) {
-      $('#F9-Log').append('&lt;li&gt;afterFileInvalid - ' + value + '&lt;/li&gt;')
+    onFileInvalid: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;onFileInvalid - ' + value + '&lt;/li&gt;')
     },
-    afterFileDuplicate: function(element, value, master_element) {
-      $('#F9-Log').append('&lt;li&gt;afterFileDuplicate - ' + value + '&lt;/li&gt;')
+    onFileDuplicate: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;onFileDuplicate - ' + value + '&lt;/li&gt;')
     },
-    afterFileTooMany: function(element, value, master_element) {
-      $('#F9-Log').append('&lt;li&gt;afterFileTooMany - ' + value + '&lt;/li&gt;')
+    onFileTooMany: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;onFileTooMany - ' + value + '&lt;/li&gt;')
     },
-    afterFileTooBig: function(element, value, master_element) {
-      $('#F9-Log').append('&lt;li&gt;afterFileTooBig - ' + value + '&lt;/li&gt;')
+    onFileTooBig: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;onFileTooBig - ' + value + '&lt;/li&gt;')
+    },
+    onFileTooMuch: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;onFileTooMuch - ' + value + '&lt;/li&gt;')
     }
   });
 });</code></pre>

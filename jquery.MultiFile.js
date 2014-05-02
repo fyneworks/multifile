@@ -278,7 +278,7 @@ if (window.jQuery)(function ($) {
 						$.each(files, function (i, file) {
 
 							// bring file name out to play
-							var v = file.name;
+							var v = file.name, s = file.size;
 
 							// check extension
 							if (MultiFile.accept && v && !v.match(MultiFile.rxAccept)) {
@@ -295,6 +295,12 @@ if (window.jQuery)(function ($) {
 										MultiFile.trigger('onFileDuplicate', this, MultiFile, [file]);
 									};
 								};
+							};
+
+							// limit the max size of individual files selected
+							if (MultiFile.maxsize > 0 && s > 0 && s > MultiFile.maxsize) {
+								ERROR[ERROR.length] = MultiFile.STRING.toobig.replace('$file', v.match(/[^\/\\]+$/gi).replace('$size', sl(s) + ' > ' + sl(MultiFile.maxsize));
+								MultiFile.trigger('onFileTooBig', this, MultiFile, [file]);
 							};
 
 							// add up size of files selected
@@ -322,9 +328,9 @@ if (window.jQuery)(function ($) {
 						};
 
 						// limit the max size of files selected
-						if (MultiFile.maxsize > 0 && total_size > MultiFile.maxsize) {
-							ERROR[ERROR.length] = MultiFile.STRING.oversize.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
-							MultiFile.trigger('onFileTooBig', this, MultiFile, newfs);
+						if (MultiFile.total_maxsize > 0 && total_size > MultiFile.total_maxsize) {
+							ERROR[ERROR.length] = MultiFile.STRING.toomuch.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.total_maxsize));
+							MultiFile.trigger('onFileTooMuch', this, MultiFile, newfs);
 						};
 
 						// Create a new file input element
@@ -615,6 +621,8 @@ if (window.jQuery)(function ($) {
 	$.fn.MultiFile.options = { //$.extend($.fn.MultiFile, { options: {
 		accept: '', // accepted file extensions
 		max: -1, // maximum number of selectable files
+		maxsize: -1, // maximum size of a single file
+		total_maxsize: -1, // maximum size of entire payload
 
 		// name to use for newly created elements
 		namePattern: '$name', // same name by default (which creates an array)
@@ -629,10 +637,11 @@ if (window.jQuery)(function ($) {
 			remove: 'x',
 			denied: 'You cannot select a $ext file.\nTry again...',
 			file: '$file',
-			toomany: 'Too many files selected (max: $max)',
 			selected: 'File selected: $file',
 			duplicate: 'This file has already been selected:\n$file',
-			oversize: 'The files selected exceed the maximum size permited ($size bytes)'
+			toomuch: 'The files selected exceed the maximum size permited ($size)',
+			toomany: 'Too many files selected (max: $max)',
+			toobig: '$file is too big (max $size)'
 		},
 
 		// name of methods that should be automcatically intercepted so the plugin can disable
