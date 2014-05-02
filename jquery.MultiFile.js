@@ -32,6 +32,11 @@ if (window.jQuery)(function ($) {
 			return this;
 		};
 
+		// Accept number
+		if (typeof options == 'number') {
+			options = {max: options};
+		};
+
 		// Initialize options for this call
 		var options = $.extend({} /* new object */ ,
 			$.fn.MultiFile.options /* default options */ ,
@@ -80,9 +85,6 @@ if (window.jQuery)(function ($) {
 				//===
 
 				//# USE CONFIGURATION
-				if (typeof options == 'number') options = {
-					max: options
-				};
 				var o = $.extend({},
 					$.fn.MultiFile.options,
 					options || {}, ($.metadata ? MultiFile.E.metadata() : ($.meta ? MultiFile.E.data() : null)) || {}, /* metadata options */ {} /* internals */
@@ -112,6 +114,11 @@ if (window.jQuery)(function ($) {
 
 				//===
 
+				// HTML5: enforce multiple selection to be enabled
+				if(o.max>1) MultiFile.E.attr('multiple','multiple').prop('multiple',true);
+
+				//===
+
 				// APPLY CONFIGURATION
 				$.extend(MultiFile, o || {});
 				MultiFile.STRING = $.extend({}, $.fn.MultiFile.options.STRING, MultiFile.STRING);
@@ -128,9 +135,9 @@ if (window.jQuery)(function ($) {
 					generateID: function (z) {
 						return MultiFile.instanceKey + (z > 0 ? '_F' + String(z) : '');
 					},
-					trigger: function (event, element) {
-						var handler = MultiFile[event],
-								files = (this.files?this.files[0]:null) || [{
+					trigger: function (event, element, MultiFile, files) {
+						var handler = MultiFile[event];
+						files = files || MultiFile.files || (this.files?this.files[0]:null) || [{
 													name: this.value,
 													size: 0,
 													type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
@@ -138,7 +145,6 @@ if (window.jQuery)(function ($) {
 						;
 						if (handler)
 							$.each(files,function(i, file){
-								console.log(file);
 								var value = file.name;
 								var returnValue = handler(element, value, MultiFile, file);
 								if (returnValue != null) return returnValue;
@@ -184,7 +190,7 @@ if (window.jQuery)(function ($) {
 				// Bind a new element
 				MultiFile.addSlave = function (slave, slave_count) {
 					//if(window.console) console.log('MultiFile.addSlave',slave_count);
-
+					
 					// Keep track of how many elements have been displayed
 					MultiFile.n++;
 					// Add reference to master element
@@ -213,8 +219,10 @@ if (window.jQuery)(function ($) {
 					);
 
 					// If we've reached maximum number, disable input slave
+					var disable_slave;
 					if ((MultiFile.max > 0) && ((MultiFile.files.length) > (MultiFile.max))) {
 						slave.disabled = true;
+						disable_slave = true;
 					};
 
 					// Remember most recent slave
@@ -237,50 +245,78 @@ if (window.jQuery)(function ($) {
 						// Lose focus to stop IE7 firing onchange again
 						$(this).blur();
 
-						//# Trigger Event! onFileSelect
-						if (!MultiFile.trigger('onFileSelect', this, MultiFile)) return false;
-						//# End Event!
-
-						//# NEW 2014-04-14 - accpet multiple file selection, HTML5
-						var files = this.files || [{
-							name: this.value,
-							size: 0,
-							type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
-						}],
-							total_size = MultiFile.total_size || 0
-							/*,
-							html5_multi_mode = this.files && $(this).attr('multiple')*/
+						//# NEW 2014-04-14 - accept multiple file selection, HTML5
+						var e = this,
+								prevs = MultiFile.files || [],
+								files = this.files || [{
+									name: this.value,
+									size: 0,
+									type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
+								}],
+								newfs = [],
+								newfs_size = 0,
+								total_size = MultiFile.total_size || 0/*,
+								html5_multi_mode = this.files && $(this).attr('multiple')*/
 							;
+
+						// recap
+						//console.log('START '+ prevs.length + ' files @ '+ sl(total_size) +'.', prevs);
 
 						//# Retrive value of selected file from element
 						var ERROR = []; //, v = String(this.value || '');
 
+						// make a normal array
+						$.each(files, function (i, file) {
+							newfs[newfs.length] = file;
+						});
+
+						//# Trigger Event! onFileSelect
+						if (!MultiFile.trigger('onFileSelect', this, MultiFile, newfs)) return false;
+						//# End Event!
+
+						// validate individual files
 						$.each(files, function (i, file) {
 
+							// bring file name out to play
 							var v = file.name;
 
 							// check extension
 							if (MultiFile.accept && v && !v.match(MultiFile.rxAccept)) {
 								ERROR[ERROR.length] = MultiFile.STRING.denied.replace('$ext', String(v.match(/[^\.]+$/i)));
+								MultiFile.trigger('onFileInvalid', this, MultiFile, [file]);
 							};
 
 							// Disallow duplicates
 							for (var f in MultiFile.slaves) {
-								if (MultiFile.slaves[f] && MultiFile.slaves[f] != this) {
-									//console.log(MultiFile.slaves[f],MultiFile.slaves[f].value);
-									if (MultiFile.slaves[f].value == v) {
+								if (MultiFile.slaves[f] && MultiFile.slaves[f] != e) {
+									var x = MultiFile.slaves[f].value;
+									if ( v == x || v == x.substr(x.length - v.length)) {
 										ERROR[ERROR.length] = MultiFile.STRING.duplicate.replace('$file', v.match(/[^\/\\]+$/gi));
+										MultiFile.trigger('onFileDuplicate', this, MultiFile, [file]);
 									};
 								};
 							};
 
 							// add up size of files selected
-							total_size += file.size;
+							newfs_size += file.size;
 
 						});
+						
+						// add up total for all files selected (existing and new)
+						total_size += newfs_size;
 
-						// file size label function
+						// put some useful information in the file array
+						newfs.size = newfs_size;
+						newfs.total = total_size;
+						newfs.total_length = newfs.length + prevs.length;
 
+						// limit the number of files selected
+						if (MultiFile.max>0 && prevs.length + files.length > MultiFile.max) {
+							ERROR[ERROR.length] = MultiFile.STRING.toomany.replace('$max', MultiFile.max);
+							MultiFile.trigger('onFileTooMany', this, MultiFile, newfs);
+						};
+
+						// size label function (shows kb and mb where accordingly)
 						function sl(x) {
 							return x > 1048576 ? (x / 1048576).toFixed(1) + 'Mb' : (x / 1048576).toFixed(1) + 'Kb'
 						};
@@ -288,6 +324,7 @@ if (window.jQuery)(function ($) {
 						// limit the max size of files selected
 						if (MultiFile.maxsize > 0 && total_size > MultiFile.maxsize) {
 							ERROR[ERROR.length] = MultiFile.STRING.oversize.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
+							MultiFile.trigger('onFileTooBig', this, MultiFile, newfs);
 						};
 
 						// Create a new file input element
@@ -301,7 +338,7 @@ if (window.jQuery)(function ($) {
 						if (ERROR.length > 0) {
 
 							// Handle error
-							MultiFile.error(ERROR.join('\n'));
+							MultiFile.error(ERROR.join('\n\n'));
 
 							// 2007-06-24: BUG FIX - Thanks to Adrian Wróbel <adrian [dot] wrobel [at] gmail.com>
 							// Ditch the trouble maker and add a fresh new element
@@ -316,8 +353,14 @@ if (window.jQuery)(function ($) {
 							// remember total size
 							MultiFile.total_size = total_size;
 
+							// merge arrays
+							files = prevs.concat(newfs);
+
+							// recap
+							//console.log('NOW '+ files.length + ' files @ '+ sl(total_size) +'.', files);
+
 							// remember files
-							MultiFile.files = (MultiFile.files || []).concat(files);
+							MultiFile.files = files;
 
 							// Hide this element (NB: display:none is evil!)
 							$(this).css({
@@ -332,10 +375,10 @@ if (window.jQuery)(function ($) {
 							MultiFile.addSlave(newEle[0], slave_count + 1);
 
 							// Update list
-							MultiFile.addToList(this, slave_count, files);
+							MultiFile.addToList(this, slave_count, newfs);
 
 							//# Trigger Event! afterFileSelect
-							if (!MultiFile.trigger('afterFileSelect', this, MultiFile)) return false;
+							if (!MultiFile.trigger('afterFileSelect', this, MultiFile, newfs)) return false;
 							//# End Event!
 
 						}; // no errors detected
@@ -344,6 +387,9 @@ if (window.jQuery)(function ($) {
 
 					// Save control to element
 					$(slave).data('MultiFile', MultiFile);
+
+					// disable?
+					if(disable_slave) $(slave).attr('disabled','disabled').prop('disabled',true);
 
 				}; // MultiFile.addSlave
 				// Bind a new element
@@ -355,20 +401,20 @@ if (window.jQuery)(function ($) {
 					//if(window.console) console.log('MultiFile.addToList',slave_count);
 
 					//# Trigger Event! onFileAppend
-					if (!MultiFile.trigger('onFileAppend', slave, MultiFile)) return false;
+					if (!MultiFile.trigger('onFileAppend', slave, MultiFile, files)) return false;
 					//# End Event!
 
 					$.each(files, function (i, file) {
 						// Create label elements
 						var
-						r = $('<div class="MultiFile-label"></div>'),
+							r = $('<div class="MultiFile-label"></div>'),
 							v = String(file.name || '' /*.attr('value)*/ ),
 							a = $('<span class="MultiFile-title" title="' + MultiFile.STRING.selected.replace('$file', v) + '">' + MultiFile.STRING.file.replace('$file', v.match(/[^\/\\]+$/gi)[0]) + '</span>'),
 							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
 								.click(function () {
 
 									//# Trigger Event! onFileRemove
-									if (!MultiFile.trigger('onFileRemove', slave, MultiFile)) return false;
+									if (!MultiFile.trigger('onFileRemove', slave, MultiFile, [file])) return false;
 									//# End Event!
 
 									MultiFile.n--;
@@ -386,8 +432,23 @@ if (window.jQuery)(function ($) {
 									});
 									$(MultiFile.current).reset().val('').attr('value', '')[0].value = '';
 
+									// rebuild array with the files that are left.
+									var newfs = [];
+									for (var f in MultiFile.slaves) {
+										var files = f.files || [{
+													name: this.value,
+													size: 0,
+													type: ((this.value || '').match(/[^\.]+$/i) || [''])[0]
+												}];
+										// make a normal array
+										$.each(files, function (i, file) {
+											newfs[newfs.length] = file;
+										});
+									};
+									MultiFile.files = newfs;
+
 									//# Trigger Event! afterFileRemove
-									if (!MultiFile.trigger('afterFileRemove', slave, MultiFile)) return false;
+									if (!MultiFile.trigger('afterFileRemove', slave, MultiFile, [file])) return false;
 									//# End Event!
 
 									return false;
@@ -397,10 +458,11 @@ if (window.jQuery)(function ($) {
 						MultiFile.list.append(
 							r.append(b, ' ', a)
 						);
+
 					});
 
 					//# Trigger Event! afterFileAppend
-					if (!MultiFile.trigger('afterFileAppend', slave, MultiFile)) return false;
+					if (!MultiFile.trigger('afterFileAppend', slave, MultiFile, files)) return false;
 					//# End Event!
 
 				}; // MultiFile.addToList
@@ -567,6 +629,7 @@ if (window.jQuery)(function ($) {
 			remove: 'x',
 			denied: 'You cannot select a $ext file.\nTry again...',
 			file: '$file',
+			toomany: 'Too many files selected (max: $max)',
 			selected: 'File selected: $file',
 			duplicate: 'This file has already been selected:\n$file',
 			oversize: 'The files selected exceed the maximum size permited ($size bytes)'
@@ -579,7 +642,7 @@ if (window.jQuery)(function ($) {
 		// error handling function
 		error: function (s) {
 
-			console.log(s);
+			if(console) console.log(s);
 
 			// TODO: add various dialog handlers here?
 			alert(s);

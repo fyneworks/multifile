@@ -218,18 +218,167 @@
 
 
     <h2>Advanced Examples</h2>
-    <div style="margin:10px 0; background-color:#ececec color:#f00; padding:10px; border:#ccc dotted 1px; color:#f00; font-weight:bold;">
-      Don't use <code>class="multi"</code> if you use any of the examples below this point. Invoke the plugin yourself.
+    <div class="row">
+      <div class="col-md-12">
+        <div style="margin:10px 0; background-color:#ececec color:#f00; padding:10px; border:#ccc dotted 1px; color:#f00; font-weight:bold;">
+          IMPORTANT: Don't use <code>class="multi"</code> if you use any of the examples below this point.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <p>
+          If you use <code><strong>class="multi"</strong></code> the plugin will be initialised automatically
+          (taking precedence over your code).
+        </p>
+        <p>
+          You must invoke the plugin with your own selector when you use any of the examples below.
+        </p>
+      </div>
+      <div class="col-md-6">
+          Something like
+          <pre><code class="language-markup">&lt;input type="file" class="<strong>this-is-your-class</strong>" /&gt;</code></pre>.
+      </div>
+      <div class="col-md-6">
+          Followed by
+          <pre><code class="language-javascript">// this is your code
+$(function(){ // wait for page to load
+  
+  // this is your selector
+  $('input.<strong>this-is-your-class</strong>').MultiFile({
+    // your options go here
+    max: 2,
+    accept: 'jpg'
+  });
+
+});</code></pre>
+        </p>
+      </div>
     </div>
 
+  <div class="example">
+  <div class="row">
+      <div class="col-md-4">
+  <h3>Setting limit via script</h3>
+  <pre><code class="language-markup">&lt;input multiple type="file" id="UpTo3Files"/&gt;</code></pre>
+  <pre><code class="language-javascript">// wait for document to load
+$(function(){
+  
+  // up to 3 files can be selected
 
-    <h3>Moving the file list</h3>
-    <div class="row">
-      <div class="col-md-6">
+  // invoke plugin
+  $('#UpTo3Files').MultiFile(5);
+
+  // if you send in a number the plugin
+  // will treat it as the file limit
+
+});</code></pre>
+        <div>
+          Try it:
+          <input multiple type="file" id="UpTo3Files"/>
+          <script>$(function(){
+  
+  // up to 5 files can be selected
+
+  // invoke plugin
+  $('#UpTo3Files').MultiFile(3);
+
+  // if you send in a number the plugin
+  // will treat it as the file limit
+
+});</script>
+        </div>
+      </div>
+      <div class="col-md-4">
+  <h3>Limit and Extension Filter</h3>
+  <pre><code class="language-markup">&lt;input multiple type="file" id="UpTo3Images"/&gt;</code></pre>
+  <pre><code class="language-javascript">// wait for document to load
+$(function(){
+  
+  // up to 3 files can be selected
+  // only images are allowed
+
+  // invoke plugin
+  $('#UpTo3Images').MultiFile({
+    max: 3, 
+    accept: 'gif|jpg|png'
+  });
+
+});</code></pre>
+        <div>
+          Try it:
+          <input multiple type="file" id="UpTo3Images"/>
+          <script>$(function(){
+  
+  // up to 5 files can be selected
+  // only images are allowed
+
+  // invoke plugin
+  $('#UpTo3Images').MultiFile({
+    max: 3, 
+    accept: 'gif|jpg|png'
+  });
+
+});</script>
+        </div>
+      </div>
+      <div class="col-md-4">
+  <h3>Multi-lingual support</h3>
+  <pre><code class="language-markup">&lt;input multiple type="file" id="EmPortugues"/&gt;</code></pre>
+  <pre><code class="language-javascript">// wait for document to load
+$(function(){
+  
+  // use a different language
+  // $file prints the file name
+  // $ext prints the file extension
+
+  // invoke plugin
+  $('#EmPortugues').MultiFile({ 
+    max: 3, 
+    accept: 'gif|jpg|png'
+    STRING: { 
+      remove:'Remover', 
+      selected:'Selecionado: $file', 
+      denied:'Invalido arquivo de tipo $ext!' 
+    } 
+  });
+
+});</code></pre>
+        <div>
+          Try it:
+          <input multiple type="file" id="EmPortugues"/>
+          <script>$(function(){
+  
+  // use a different lanague
+  // $file prints the file name
+  // $ext prints the file extension
+
+  // invoke plugin
+  $('#EmPortugues').MultiFile({ 
+    max: 3, 
+    accept: 'gif|jpg|png',
+    STRING: { 
+      remove:'Remover', 
+      selected:'Selecionado: $file', 
+      denied:'Invalido arquivo de tipo $ext!' 
+    } 
+  });
+
+});</script>
+        </div>
+      </div>
+
+  </div><!-- row -->
+  </div><!-- example -->
+
+  <div class="example">
+  <h3>Moving the file list</h3>
+  <div class="row">
+      <div class="col-md-8">
         <fieldset style="border:0">
+<!--
           <legend>
             <strong>Example 7</strong>
           </legend>
+-->
           <p>This example populates the file list in a custom element</p>
           <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T7').MultiFile({
@@ -245,7 +394,7 @@
           </script>
         </fieldset>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <form action="" class="P10">
           <input type="file" id="T7" />
         </form>
@@ -255,24 +404,27 @@
           <br/>
         </div>
       </div>
-    </div>
-  </div>
+  </div><!-- row -->
+  </div><!-- example -->
 
+  <div class="example">
   <h3>Customising the file list</h3>
   <div class="row">
 
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-md-8">
 
 
       <fieldset style="border:0">
+<!--
         <legend>
           <strong>Example 8 A</strong>
         </legend>
+-->
         <p>Use a custom 'remove' image in the file list</p>
         <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T8A').MultiFile({
     STRING: {
-      remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
+      remove: '&lt;img src=&quot;/i/bin.gif&quot; height=&quot;16&quot; width=&quot;16&quot; alt=&quot;x&quot;/&gt;'
     }
   });
 });</code></pre>
@@ -287,25 +439,30 @@
         </script>
       </fieldset>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-md-4">
       <form action="" class="P10">
         <input type="file" id="T8A" />
       </form>
     </div>
 
-  </div>
+  </div><!-- row -->
+  </div><!-- example -->
+
+  <div class="example">
   <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-md-8">
       <fieldset style="border:0">
+<!--
         <legend>
           <strong>Example 8 B</strong>
         </legend>
+-->
         <p>Customising all list content</p>
         <pre><code class="language-javascript">$(function() { // wait for document to load 
   $('#T8B').MultiFile({
     STRING: {
-      file: '<em title="Click to remove" onclick="$(this).parent().prev().click()">$file</em>',
-      remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
+      file: '&lt;em title=&quot;Click to remove&quot; onclick=&quot;$(this).parent().prev().click()&quot;&gt;$file&lt;/em&gt;',
+      remove: '&lt;img src=&quot;/i/bin.gif&quot; height=&quot;16&quot; width=&quot;16&quot; alt=&quot;x&quot;/&gt;'
     }
   });
 });</code></pre>
@@ -321,58 +478,107 @@
         </script>
       </fieldset>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-md-4">
       <form action="" class="P10">
         <input type="file" id="T8B" />
       </form>
     </div>
-  </div>
+  </div><!-- row -->
+  </div><!-- example -->
 
-  <hr/>
-
+  <div class="example">
   <h3>Using events</h3>
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <fieldset style="border:0">
-          <legend>
-            <strong>Example 9</strong>
-          </legend>
-          <p>
-            The events available are:
-            <br/>onFileAppend, afterFileAppend, onFileSelect, afterFileSelect, onFileRemove, afterFileRemove
-          </p>
           <p>
             The arguments passed on to each event handler are:
             <br/>element: file element which triggered the event
             <br/>value: the value of the element in question
             <br/>master_element: the original element containing all relevant settings
           </p>
-          <pre><code class="language-javascript">$(function() { // wait for document to load 
-  $('#T9').MultiFile({
+      </div>
+      <div class="col-md-3">
+          <p>
+            Selection events:
+            <ul>
+              <li>onFileAppend</li>
+              <li>afterFileAppend</li>
+              <li>onFileSelect</li>
+              <li>afterFileSelect</li>
+              <li>onFileRemove</li>
+              <li>afterFileRemove</li>
+            </ul>
+          </p>
+      </div>
+      <div class="col-md-3">
+          <p>
+            Validation events:
+            <ul>
+              <li>onFileDuplicate</li>
+              <li>onFileInvalid</li>
+              <li>onFileTooMany</li>
+              <li>OnFileTooBig</li>
+            </ul>
+          </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset style="border:0">
+<!--
+          <legend>
+            <strong>Example 9</strong>
+          </legend>
+-->
+  <pre><code class="language-markup">&lt;input multiple type="file" id="WithEvents"/&gt;</code></pre>
+  <pre><code class="language-javascript">// wait for document to load
+$(function(){
+  
+  // 2 jpgs under 100kb only
+
+  $('#WithEvents').MultiFile({
+    max: 2,
+    max_size: 100,
+    accept: 'jpg',
     onFileRemove: function(element, value, master_element) {
-      $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;onFileRemove - ' + value + '&lt;/li&gt;')
     },
     afterFileRemove: function(element, value, master_element) {
-      $('#F9-Log').append('<li>afterFileRemove - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;afterFileRemove - ' + value + '&lt;/li&gt;')
     },
     onFileAppend: function(element, value, master_element) {
-      $('#F9-Log').append('<li>onFileAppend - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;onFileAppend - ' + value + '&lt;/li&gt;')
     },
     afterFileAppend: function(element, value, master_element) {
-      $('#F9-Log').append('<li>afterFileAppend - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;afterFileAppend - ' + value + '&lt;/li&gt;')
     },
     onFileSelect: function(element, value, master_element) {
-      $('#F9-Log').append('<li>onFileSelect - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;onFileSelect - ' + value + '&lt;/li&gt;')
     },
     afterFileSelect: function(element, value, master_element) {
-      $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
+      $('#F9-Log').append('&lt;li&gt;afterFileSelect - ' + value + '&lt;/li&gt;')
+    },
+    afterFileInvalid: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;afterFileInvalid - ' + value + '&lt;/li&gt;')
+    },
+    afterFileDuplicate: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;afterFileDuplicate - ' + value + '&lt;/li&gt;')
+    },
+    afterFileTooMany: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;afterFileTooMany - ' + value + '&lt;/li&gt;')
+    },
+    afterFileTooBig: function(element, value, master_element) {
+      $('#F9-Log').append('&lt;li&gt;afterFileTooBig - ' + value + '&lt;/li&gt;')
     }
   });
 });</code></pre>
           <script type="text/javascript" language="javascript">
           $(function() { // wait for document to load 
-            $('#T9').MultiFile({
+            $('#WithEvents').MultiFile({
+              max: 2,
+              max_size: 100,
+              accept: 'jpg',
               onFileRemove: function(element, value, master_element) {
                 $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
               },
@@ -390,6 +596,18 @@
               },
               afterFileSelect: function(element, value, master_element) {
                 $('#F9-Log').append('<li>afterFileSelect - ' + value + '</li>')
+              },
+              onFileInvalid: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileInvalid - ' + value + '</li>')
+              },
+              onFileDuplicate: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileDuplicate - ' + value + '</li>')
+              },
+              onFileTooMany: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileTooMany - ' + value + '</li>')
+              },
+              onFileTooBig: function(element, value, master_element) {
+                $('#F9-Log').append('<li>onFileTooBig - ' + value + '</li>')
               }
             });
           });
@@ -398,7 +616,7 @@
       </div>
       <div class="col-md-6">
         <form action="" class="P10">
-          <input type="file" id="T9" />
+          <input multiple type="file" id="WithEvents" />
         </form>
         <div style="border:#999 solid 3px; padding:10px;">
           This is div#F9-Log - selected files will be populated here...
@@ -409,42 +627,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div><!-- row -->
+  </div><!-- example -->
 
-  <hr/>
-
-  <h3>Using your own selectors</h3>
-  <pre><code class="language-javascript">$(function(){
-  // wait for document to load
-  $('#MyFileUpload').MultiFile();
-});</code></pre>
-
-  <h3>Setting limit via script</h3>
-  <pre><code class="language-javascript">$(function(){
-  // wait for document to load
-  $('#MyFileUpload').MultiFile(5 /*limit will be set to 5*/);
-});</code></pre>
-
-  <h3>Advanced configuration</h3>
-  <pre><code class="language-javascript">$(function(){
-  // wait for document to load 
-  $('#MyCoolFileUpload').MultiFile({
-    max: 5, 
-    accept: 'gif|jpg|png|bmp|swf'
-  });
-});</code></pre>
-
-  <h3>Customising visible strings for multi-lingual support</h3>
-  <pre><code class="language-javascript">$(function(){ 
-  // wait for document to load 
-  $('#PortugueseFileUpload').MultiFile({ 
-    STRING: { 
-      remove:'Remover', 
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!' 
-    } 
-  }); 
-});</code></pre>
 
 </div>
 </div>
@@ -540,6 +725,7 @@
 <div class="container clear section" id="Support">
   <h2>Support</h2>
   <div class="row">
+  <div class="col-md-12">
     
     <p>
       We very much encourage and would love you all to report issues, contribue and discuss this project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>.
@@ -555,12 +741,14 @@
       Our other projects (<a href="http://www.fyneworks.com/jquery/star-rating">Star Rating</a> &amp; <a href="http://www.fyneworks.com/jquery/CKEditor">CKEditor</a> will follow shortly).
     </p>
   </div>
+  </div>
 </div>
 
 
 <div class="container clear section" id="Credit">
-  <h3>Credit where it's due!</h3>
+  <h2>Credit where it's due!</h2>
   <div class="row">
+  <div class="col-md-12">
     <ul>
       <li>Fyneworks.com <a href="http://www.fyneworks.com/">professional web design</a> and <a href="http://www.fyneworks.com/">google SEO experts</a>
       </li>
@@ -577,12 +765,14 @@
       <li>Julien Phalip - Identified conflict with variable name 'class' in several methods</li>
     </ul>
   </div>
+  </div>
 </div>
 
 
-<div class="container clear section" id="Support">
-  <h3>License Info</h3>
+<div class="container clear section" id="License">
+  <h2>License Info</h2>
   <div class="row">
+  <div class="col-md-12">
     <div class="license-info">
       <table cellspacing="5" width="100%">
         <tr>
@@ -627,7 +817,8 @@ OTHER DEALINGS IN THE SOFTWARE.</pre>
         </tr>
       </table>
     </div>
-  </div>
+    </div>
+   </div>
 
 </div>
 

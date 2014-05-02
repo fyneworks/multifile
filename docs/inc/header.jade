@@ -6,10 +6,10 @@
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand(href='./') Fyneworks
+				a.navbar-brand(href='./')= pkg.title
 			.navbar-collapse.collapse
 				ul.nav.navbar-nav
-					li
+					//li
 						a(href='#') Intro
 					- var obj = { 'Usage':'Usage', 'API':'Advanced', 'Locale':'Locale', 'Install':'Install', 'Support':'Support','Credit':'Credit' }
 						- each val, key in obj
