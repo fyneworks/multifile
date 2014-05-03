@@ -11,8 +11,7 @@
 				ul.nav.navbar-nav
 					//li
 						a(href='#') Intro
-					- var obj = { 'Usage':'Usage', 'API':'Advanced', 'Locale':'Locale', 'Install':'Install', 'Support':'Support','Credit':'Credit' }
+					- var obj = { 'Usage':'Usage', 'Advanced':'Advanced', 'Customize':'Customize', 'Events':'Events', 'Locale':'Locale', 'Install':'Install', 'Support':'Support','Credit':'Credit' }
 						- each val, key in obj
 								li
 									a(href='##{key}',id='#btn-#{key}') #{val}
-
