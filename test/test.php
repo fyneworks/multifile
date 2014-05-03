@@ -3,13 +3,13 @@ header('Content-type: text/plain');
 
 $nl = "\n";
 
-echo('FILES'.' >>>>>>>>>>'.$nl);
+//echo('FILES'.' >>>>>>>>>>'.$nl);
 print_r($_FILES);
-echo('<<<<<<<<<<<<<<'.$nl.$nl);
+//echo('<<<<<<<<<<<<<<'.$nl.$nl);
 
-echo('POST DATA'.' >>>>>>>>>>'.$nl);
-print_r($_POST);
-echo('<<<<<<<<<<<<<<'.$nl.$nl);
+//echo('POST DATA'.' >>>>>>>>>>'.$nl);
+//print_r($_POST);
+//echo('<<<<<<<<<<<<<<'.$nl.$nl);
 
 //echo('REQUEST HEADERS:'.'>>>>>>>>>>'.$nl);
 //print_r($_REQUEST);

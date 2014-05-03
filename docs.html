@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>jQuery MultiFile v2.0.0</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="docs.css"><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script><script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><link rel="stylesheet" href="http://prismjs.com/themes/prism.css"><script src="http://prismjs.com/prism.js"></script><!--link(rel='stylesheet', href='http://highlightjs.org/static/styles/zenburn.css')--><!--script(src='http://yandex.st/highlightjs/8.0/highlight.min.js')--><script src="docs.js"></script></head><body><div role="navigation" class="navbar navbar-default navbar-fixed-top navbar-static-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="./" class="navbar-brand">jQuery MultiFile</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><!--lia(href='#') Intro--><li><a href="#Usage" id="#btn-Usage">Usage</a></li><li><a href="#API" id="#btn-API">Advanced</a></li><li><a href="#Locale" id="#btn-Locale">Locale</a></li><li><a href="#Install" id="#btn-Install">Install</a></li><li><a href="#Support" id="#btn-Support">Support</a></li><li><a href="#Credit" id="#btn-Credit">Credit</a></li></ul></div></div></div><div class="container"><div class="jumbotron"><h1>jQuery MultiFile</h1><p>The <strong>unopinionated</strong> way to implement file selection.</p></div></div><div class="container"><div class="Clear" id="body">
+<!DOCTYPE html><html><head><title>jQuery MultiFile v2.0.1</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.1.1-1/css/custom/bootstrap.min.css"><link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css"><link rel="stylesheet" href="docs.css"><script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script><script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script><link rel="stylesheet" href="http://prismjs.com/themes/prism.css"><script src="http://prismjs.com/prism.js"></script><!--link(rel='stylesheet', href='http://highlightjs.org/static/styles/zenburn.css')--><!--script(src='http://yandex.st/highlightjs/8.0/highlight.min.js')--><script src="docs.js"></script></head><body><div role="navigation" class="navbar navbar-default navbar-fixed-top navbar-static-top"><div class="container"><div class="navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="./" class="navbar-brand">jQuery MultiFile</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><!--lia(href='#') Intro--><li><a href="#Usage" id="#btn-Usage">Usage</a></li><li><a href="#API" id="#btn-API">Advanced</a></li><li><a href="#Locale" id="#btn-Locale">Locale</a></li><li><a href="#Install" id="#btn-Install">Install</a></li><li><a href="#Support" id="#btn-Support">Support</a></li><li><a href="#Credit" id="#btn-Credit">Credit</a></li></ul></div></div></div><div class="container"><div class="jumbotron"><h1>jQuery MultiFile</h1><p>The <strong>unopinionated</strong> way to implement file selection.</p></div></div><div class="container"><div class="Clear" id="body">
 
   <div class="container clear section">
 
@@ -42,7 +42,7 @@
 
 
     <h3>Getting started</h3>
-    <div class="row">
+    <div class="row example">
       <div class="col-md-8">
         <p>
           Just add the
@@ -54,12 +54,11 @@
         <input type="file" multiple="multiple" class="multi" multiple="multiple" />
       </div>
     </div>
-    <div class="row">
+    <div class="row example">
       <div class="col-md-8">
         <p>
           Use the
           <code><strong>maxlength</strong></code> property if you want to limit the number of files selected.
-          (<span style="font-weight:bold; color:red;">server-side validation is always required</span>)
         </p>
         <pre><code class="language-markup">&lt;input type="file" class="multi" maxlength="2"/&gt;</code></pre>
       </div>
@@ -67,17 +66,23 @@
         <input type="file" multiple="multiple" class="multi" maxlength="2" />
       </div>
     </div>
-    <div class="row">
+    <div class="row example">
       <div class="col-md-8">
         <p>
           Use the
-          <code><strong>accept</strong></code> property if you only want files of a certain extension to be selected Separate valid extensions with a "|", like this: "jpg|gif|png". (
-          <span style="font-weight:bold; color:red;">server-side validation is always required</span>)
+          <code><strong>accept</strong></code> property if you only want files of a certain extension to be selected.
+          <br/>
+          Separate valid extensions with a "|", like this: "jpg|gif|png".
         </p>
         <pre><code class="language-markup">&lt;input type="file" class="multi" accept="gif|jpg"/&gt;</code></pre>
       </div>
       <div class="col-md-4">
         <input type="file" multiple="multiple" class="multi" accept="gif|jpg" />
+      </div>
+    </div>
+    <div class="row example">
+      <div class="col-md-8">
+        NB.: <span style="font-weight:bold; color:red;">server-side validation is always required</span>
       </div>
     </div>
   </div>
@@ -87,7 +92,14 @@
 
     <h2>Usage Examples</h2>
 
+    <div class="example">
     <h3>Using Attributes</h3>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>The easiest way to get started is to add <code>class="multi"</code> and modify the attributes of your element</p>
+      </div>
+    </div>
     <div class="row">
 
       <div class="col-md-4">
@@ -95,6 +107,7 @@
           <legend>
             <strong>Example 1</strong>
           </legend>
+          <p>Use <code>maxlength</code> to limit the number of files selected</p>
           <pre><code class="language-markup">&lt;input
   class="multi"
   maxlength="2"
@@ -113,7 +126,8 @@
           <legend>
             <strong>Example 2</strong>
           </legend>
-          <pre><code class="language-markup">&lt;input
+          <p>Use <code>accept</code> to limit the extensions allowed</p>
+         <pre><code class="language-markup">&lt;input
   class="multi"
   accept="gif|jpg"
 /&gt;</code></pre>
@@ -131,6 +145,7 @@
           <legend>
             <strong>Example 3</strong>
           </legend>
+          <p>Use <code>maxlength</code> and <code>accept</code> combined</p>
           <pre><code class="language-markup">&lt;input
   class="multi"
   accept="gif|jpg"
@@ -151,9 +166,16 @@
 
     </div>
 
+    </div>
+    <div class="example">
+    
+    <h3>Using the <code>class</code> property</h3>
 
-    <h3>Using the
-      <code>class</code> coderoperty</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <p>There is a way to configure the plugin via the <code>class</code> property, without any knowledge of javascript</p>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-4">
@@ -161,15 +183,15 @@
           <legend>
             <strong>Example 4</strong>
           </legend>
-          <pre><code class="language-markup">&lt;input
-  class="multi max-2"
-/&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input class="
+  multi max-3
+"/&gt;</code></pre>
           <div class="P5 B">
-            Limit: 2 files.
+            Limit: 3 files.
             <br/>Allowed extensions: any.
           </div>
           <form action="" class="P10">
-            <input type="file" multiple="multiple" class="multi max-2" />
+            <input type="file" multiple="multiple" class="multi max-3" />
           </form>
         </fieldset>
       </div>
@@ -178,9 +200,9 @@
           <legend>
             <strong>Example 5</strong>
           </legend>
-          <pre><code class="language-markup">&lt;input
-  class="multi accept-gif|jpg"
-/&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input class="
+  multi accept-gif|jpg
+"/&gt;</code></pre>
           <div class="P5 B">
             Limit: no limit.
             <br/>Allowed extensions: gif, jpg.
@@ -195,15 +217,19 @@
           <legend>
             <strong>Example 6</strong>
           </legend>
-          <pre><code class="language-markup">&lt;input
-  class="multi max-3 accept-gif|jpg"
-/&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input class="
+  multi
+  max-3
+  accept-gif|jpg
+  maxsize-1024
+"/&gt;</code></pre>
           <div class="P5 B">
             Limit: 3 files
             <br/>Allowed extensions: gif, jpg.
+            <br/>Max payload: 1MB (1024 bytes)
           </div>
           <form action="" class="P10">
-            <input type="file" multiple="multiple" class="multi max-3 accept-gif|jpg" />
+            <input type="file" multiple="multiple" class="multi max-3 accept-gif|jpg maxsize-1024" />
           </form>
           <div class="P5 Warning Bold">
             Note that server-side validation is always required
@@ -212,6 +238,157 @@
       </div>
     </div>
 
+    </div>
+    <div class="example">
+    
+    <h3>Selecting many files at once (HTML5)</h3>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>So far, each of the example above has only enabled you to select one file at a time. To select multiple files at once, just use HTML5's <code>multiple</code> attribute (<a href="http://www.w3schools.com/tags/att_input_multiple.asp">1</a>, <a href="http://www.w3.org/TR/2012/WD-html5-20121025/common-input-element-attributes.html#attr-input-multiple">2</a>)</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 7</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi"
+  maxlength="10"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 10 files.
+            <br/>Allowed extensions: any.
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" maxlength="10"/>
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 8</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi"
+  accept="gif|jpg|png"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: no limit.
+            <br/>Allowed extensions: gif, jpg.
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" accept="gif|jpg|png"/>
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 9</strong>
+          </legend>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi"
+  maxlength="10"
+  accept="gif|jpg|png"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 10 files
+            <br/>Allowed extensions: gif, jpg, png.
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi" maxlength="10" accept="gif|jpg|png"/>
+          </form>
+          <div class="P5 Warning Bold">
+            Note that server-side validation is always required
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    </div>
+    <div class="example">
+    
+    <h3>Validating Sizes</h3>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>It's common to validate the size of the files being selected prior to upload.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 10a</strong>
+          </legend>
+          <p>Using class <code>maxsize-*</code> (* = max size in kb)</code></p>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi maxsize-5120"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: any number of files
+            <br/>Allowed extensions: any.
+            <br/>Max payload: 5MB
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple" class="multi maxsize-5120"/>
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 10b</strong>
+          </legend>
+          <p>Using <code>data-maxsize</code> attribute (max size in kb)</p>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi"
+  maxlength="3"
+  data-<strong>maxsize</strong>="1024"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 3 files (under &lt;1MB <strong>in total</strong>)
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple"  class="multi" maxlength="3" data-maxsize="1024" />
+          </form>
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset style="border:0">
+          <legend>
+            <strong>Example 10c</strong>
+          </legend>
+          <p>Use <code>data-maxfile</code> to validate individual files</p>
+          <pre><code class="language-markup">&lt;input
+  multiple
+  class="multi"
+  maxlength="3"
+  data-<strong>maxfile</strong>="1024"
+/&gt;</code></pre>
+          <div class="P5 B">
+            Limit: 3 files (under &lt;1MB <strong>each</strong>)
+          </div>
+          <form action="" class="P10">
+            <input type="file" multiple="multiple"  class="multi" maxlength="3" data-maxfile="1024" />
+          </form>
+          <div class="P5 Warning Bold">
+            Note that server-side validation is always required
+          </div>
+        </fieldset>
+      </div>
+    </div>
 
   </div>
   <div class="container clear section" id="API">
@@ -830,6 +1007,50 @@ OTHER DEALINGS IN THE SOFTWARE.</pre>
 
 </div>
 
+<!--// demo page code //-->
+<script>
+$('input[type=file]').each(function () {
+  var e = $(this).attr('name','multifile-test[]');
+  e.wrap('<form class="test-form" action="test/test.php" method="post" enctype="multipart/form-data" target="upload-frame"></form>');
+  e.before(
+    $('<button type="submit"/>')
+    .text('Upload')
+    .on('click',function () {
+      var u = $('#upload-dialog');
+      var m = e.data('MultiFile'); if(!m) return;
+      var f = m.files; if(!f) return;
+      console.log('would upload ' + f.length +' file(s) in a '+ f.size_label +'kb payload', f);
+      u.show().dialog({
+        title: 'Upload Inspector',
+        width: 'auto',
+        height: 'auto',
+        closeOnEscape: true,
+        modal: true
+      });
+    })
+  );
+});
+</script>
+<div id="upload-dialog" style="display:none;">
+  <div class="ui-widget">
+    <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+      <p>
+        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+        These files <strong>would</strong> have been uploaded.
+        <strong>No files have been uploaded</strong>
+      </p>
+    </div>
+  </div>
+  <iframe id="upload-frame" name="upload-frame" src="about:blank" style="border:#ccc solid 1px; height:300px; width:560px;"></iframe>
+  <div class="ui-widget">
+    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+      <p>
+        <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+        Always perform server-side validation before uploading user files
+      </p>
+    </div>
+  </div>
+</div>
 
 <!--// plugin-specific resources //-->
 <script src='jquery.form.js' type="text/javascript" language="javascript"></script>

@@ -365,6 +365,10 @@ if (window.jQuery)(function ($) {
 							// merge arrays
 							files = prevs.concat(newfs);
 
+							// put some useful information in the file array
+							files.size = total_size;
+							files.size_label = sl(total_size);
+
 							// recap
 							//console.log('NOW '+ files.length + ' files @ '+ sl(total_size) +'.', files);
 
