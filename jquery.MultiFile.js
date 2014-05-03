@@ -108,10 +108,18 @@ if (window.jQuery)(function ($) {
 					o.accept = new String(o.accept).replace(/^(accept|ext)\-/i, '');
 				};
 				// limit total pay load size
+				o.maxsize = o.maxsize>0?o.maxsize:null || MultiFile.E.data('maxsize') || 0;
 				if (!(o.maxsize > 0) /*IsNull(MultiFile.maxsize)*/ ) {
 					o.maxsize = (String(MultiFile.e.className.match(/\b(maxsize|maxload|size)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
 					if (!(o.maxsize > 0)) o.maxsize = -1;
 					else o.maxsize = String(o.maxsize).match(/[0-9]+/gi)[0];
+				};
+				// limit individual file size
+				o.maxfile = o.maxfile>0?o.maxfile:null || MultiFile.E.data('maxfile') || 0;
+				if (!(o.maxfile > 0) /*IsNull(MultiFile.maxfile)*/ ) {
+					o.maxfile = (String(MultiFile.e.className.match(/\b(maxfile|filemax)\-([0-9]+)\b/gi) || ['']).match(/[0-9]+/gi) || [''])[0];
+					if (!(o.maxfile > 0)) o.maxfile = -1;
+					else o.maxfile = String(o.maxfile).match(/[0-9]+/gi)[0];
 				};
 
 				//===

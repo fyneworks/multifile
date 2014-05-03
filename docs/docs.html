@@ -1020,6 +1020,8 @@ $('input[type=file]').each(function () {
       var m = e.data('MultiFile'); if(!m) return;
       var f = m.files; if(!f) return;
       console.log('would upload ' + f.length +' file(s) in a '+ f.size_label +'kb payload', f);
+      console.log(m);
+      console.log('>>>>>');
       u.show().dialog({
         title: 'Upload Inspector',
         width: 'auto',
