@@ -754,7 +754,7 @@ if (window.jQuery)(function ($) {
 		// error handling function
 		error: function (s) {
 
-			if(console) console.log(s);
+			if(typeof console != 'undefined') console.log(s);
 
 			// TODO: add various dialog handlers here?
 			alert(s);
