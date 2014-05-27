@@ -88,7 +88,7 @@ module.exports = function(grunt) {
       options:{
         reload: true
       },
-      jade: { files: ['docs/**/*.jade','docs/*.html'], tasks: ['jade:docs','beep'], options: {} },
+      jade: { files: ['package.json','docs/**/*.jade','docs/*.html'], tasks: ['jade:docs','beep'], options: {} },
       scss: { files: ['docs/*.scss'], tasks: ['sass:docs','beep'], options: {} },
       css: { files: ['*.css'], tasks: ['cssmin:docs','beep'], options: {} },
       js: { files: ['jquery.MultiFile.js'], tasks: ['uglify:dist','beep'], options: {} }
