@@ -1,5 +1,5 @@
 /*
- ### jQuery Multiple File Selection Plugin v2.0.3 - 2014-05-27 ###
+ ### jQuery Multiple File Selection Plugin v2.1.0 - 2014-07-02 ###
  * Home: http://www.fyneworks.com/jquery/multifile/
  * Code: http://code.google.com/p/jquery-multifile-plugin/
  *
@@ -137,7 +137,7 @@ if (window.jQuery)(function ($) {
 
 				// APPLY CONFIGURATION
 				$.extend(MultiFile, o || {});
-				MultiFile.STRING = $.extend({}, $.fn.MultiFile.options.STRING, MultiFile.STRING);
+				MultiFile.STRING = $.extend(MultiFile.STRING || {}, $.fn.MultiFile.options.STRING, MultiFile.STRING);
 
 				//===
 
@@ -438,21 +438,41 @@ if (window.jQuery)(function ($) {
 					MultiFile.trigger('FileAppend', slave, MultiFile, files);
 					//# End Event!
 					
-					var names = [];
+					var names = $('<span/>');
 					$.each(files, function (i, file) {
-						var v = String(file.name || '' );
-						names[names.length] =
-							(
-								'<span class="MultiFile-title" title="' + MultiFile.STRING.selected + '">'
-									+ MultiFile.STRING.file +
-								'</span>'
-							)
-							.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
-							.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
-							.replace(/\$(size)/gi, sl(file.size || 0))
-						;
+						var v = String(file.name || '' ),
+								S = MultiFile.STRING,
+								n = S.label || S.file || S.name,
+								t = S.title || S.tooltip || S.selected,
+								p = '<img class="MultiFile-preview" style="'+ MultiFile.previewCss+'"/>',
+								label =	$(
+										(
+											'<span class="MultiFile-label" title="' + t + '">'+
+												'<span class="MultiFile-title">'+ n +'</span>'+
+												(MultiFile.preview || $(slave).is('.with-preview') ? p : '' )+
+											'</span>'
+										)
+										.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
+										.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
+										.replace(/\$(size)/gi, sl(file.size || 0))
+										.replace(/\$(preview)/gi, p)
+								);
+						
+						// now supports preview. Just add an image with class preview to the "file" string
+						label.find('img.MultiFile-preview').each(function(){
+							var t = this;
+							var oFReader = new FileReader();
+							oFReader.readAsDataURL(file);
+							oFReader.onload = function (oFREvent) {
+								t.src = oFREvent.target.result;
+							};
+						});
+
+						// append file label to list
+						if(i>1) names.append(', ');
+						names.append(label);
+
 					});
-					names = names.join(', ');
 
 					//$.each(files, function (i, file) {
 						// Create label elements
@@ -747,6 +767,10 @@ if (window.jQuery)(function ($) {
 		/*group count*/ // use $g
 		/*slave count*/ // use $i
 		/*other	 */ // use any combination of he above, eg.: $name_file$i
+
+		// previews
+		preview: false,
+		previewCss: 'max-height:100px; max-width:100px;',
 
 		// STRING: collection lets you show messages in different languages
 		STRING: {
