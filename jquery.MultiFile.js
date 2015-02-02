@@ -450,6 +450,7 @@ if (window.jQuery)(function ($) {
 							.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
 							.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
 							.replace(/\$(size)/gi, sl(file.size || 0))
+							.replace(/\$(i)/gi, i)
 						;
 					});
 					names = names.join(', ');
