@@ -1,0 +1,26 @@
+{
+  "name": "multifile",
+  "version": "2.2.0",
+  "homepage": "https://github.com/fyneworks/multifile",
+  "authors": [
+    "Fyneworks.com"
+  ],
+  "description": "jQuery multiple file upload plugin",
+  "main": "jquery.MultiFile.js",
+  "keywords": [
+    "jquery",
+    "file",
+    "upload"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower.json",
+    "package.json",
+    "docs",
+    "test",
+    "tests"
+  ]
+}

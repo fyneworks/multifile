@@ -23,7 +23,11 @@ And remember..... **server-side validation is always required**.
 
 ##Installation
 
-Add the required javascript files to your document, just before the `</html>` tag.
+1. Get the package:
++ Download zip from GitHub <a href="https://github.com/fyneworks/star-rating/archive/master.zip"><strong>star-rating.zip</strong></a>
++ Install with bower: `bower install multifile`
+
+2. Invoke the required javascript files to your document, just before the `</html>` tag.
 
 Add [jQuery](https://developers.google.com/speed/libraries/devguide#jquery) to your page. We strongly recommend you make use of Google's Hosted Libraries service.
 
