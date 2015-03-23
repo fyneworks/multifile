@@ -336,6 +336,12 @@ if (window.jQuery)(function ($) {
 								MultiFile.trigger('FileTooBig', this, MultiFile, [file]);
 							};
 
+							// limit the min size of individual files selected
+							if (MultiFile.minfile>0 && s>0 && s<MultiFile.minfile) {
+								ERROR[ERROR.length] = p(MultiFile.STRING.toosmall);
+								MultiFile.trigger('FileTooSmall', this, MultiFile, [file]);
+							};
+
 							// check extension
 							var customError = MultiFile.trigger('FileValidate', this, MultiFile, [file]);
 							if(customError && customError!=''){
@@ -360,11 +366,19 @@ if (window.jQuery)(function ($) {
 							ERROR[ERROR.length] = MultiFile.STRING.toomany.replace('$max', MultiFile.max);
 							MultiFile.trigger('FileTooMany', this, MultiFile, newfs);
 						};
+						if (MultiFile.min>0 && prevs.length + files.length < MultiFile.min) {
+							ERROR[ERROR.length] = MultiFile.STRING.toofew.replace('$min', MultiFile.min);
+							MultiFile.trigger('FileTooFew', this, MultiFile, newfs);
+						};
 
 						// limit the max size of files selected
 						if (MultiFile.maxsize > 0 && total_size > MultiFile.maxsize) {
 							ERROR[ERROR.length] = MultiFile.STRING.toomuch.replace('$size', sl(total_size) + ' > ' + sl(MultiFile.maxsize));
 							MultiFile.trigger('FileTooMuch', this, MultiFile, newfs);
+						};
+						if (MultiFile.minsize > 0 && total_size < MultiFile.minsize) {
+							ERROR[ERROR.length] = MultiFile.STRING.toolittle.replace('$size', sl(total_size) + ' < ' + sl(MultiFile.minsize));
+							MultiFile.trigger('FileTooLittle', this, MultiFile, newfs);
 						};
 
 						// Create a new file input element
@@ -378,7 +392,8 @@ if (window.jQuery)(function ($) {
 						if (ERROR.length > 0) {
 
 							// Handle error
-							MultiFile.error(ERROR.join('\n\n'));
+							if($.type(MultiFile.error)=='function')
+								MultiFile.error(ERROR.join('\n\n'));
 
 							// 2007-06-24: BUG FIX - Thanks to Adrian Wróbel <adrian [dot] wrobel [at] gmail.com>
 							// Ditch the trouble maker and add a fresh new element
@@ -828,6 +843,9 @@ if (window.jQuery)(function ($) {
 		max: -1, // maximum number of selectable files
 		maxfile: -1, // maximum size of a single file
 		maxsize: -1, // maximum size of entire payload
+		
+		minfile: -1, // minimum size of a single file
+		minsize: -1, // minimum size of entire payload
 
 		// name to use for newly created elements
 		namePattern: '$name', // same name by default (which creates an array)
@@ -849,8 +867,11 @@ if (window.jQuery)(function ($) {
 			selected: 'File selected: $file',
 			duplicate: 'This file has already been selected:\n$file',
 			toomuch: 'The files selected exceed the maximum size permited ($size)',
+			toolittle: 'The files do not reach the minimum size required ($size)',
 			toomany: 'Too many files selected (max: $max)',
-			toobig: '$file is too big (max $size)'
+			toofew: 'Too few files selected (min: $max)',
+			toobig: '$file is too big (max $size)',
+			toosmall: '$file is too small (min $size)'
 		},
 
 		// name of methods that should be automcatically intercepted so the plugin can disable
