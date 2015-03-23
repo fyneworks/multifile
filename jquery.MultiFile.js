@@ -840,10 +840,12 @@ if (window.jQuery)(function ($) {
 	*/
 	$.fn.MultiFile.options = { //$.extend($.fn.MultiFile, { options: {
 		accept: '', // accepted file extensions
+
 		max: -1, // maximum number of selectable files
 		maxfile: -1, // maximum size of a single file
 		maxsize: -1, // maximum size of entire payload
 		
+		min: -1, // minimum number of selectable files
 		minfile: -1, // minimum size of a single file
 		minsize: -1, // minimum size of entire payload
 
@@ -861,9 +863,9 @@ if (window.jQuery)(function ($) {
 
 		// STRING: collection lets you show messages in different languages
 		STRING: {
-			remove: 'x',
-			denied: 'You cannot select a $ext file.\nTry again...',
+			remove: 'x', // can be html, <i class="icon-erase"></i>, etc...
 			file: '$file',
+			denied: 'You cannot select a $ext file.\nTry again...',
 			selected: 'File selected: $file',
 			duplicate: 'This file has already been selected:\n$file',
 			toomuch: 'The files selected exceed the maximum size permited ($size)',
@@ -884,6 +886,8 @@ if (window.jQuery)(function ($) {
 			if(typeof console != 'undefined') console.log(s);
 
 			// TODO: add various dialog handlers here?
+			// 			 detect the presence of bootstrap or jquery ui
+			// 			 to display more user friendly messages automatically?
 			alert(s);
 		}
 	}; //} });

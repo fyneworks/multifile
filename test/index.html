@@ -66,8 +66,22 @@ $(function(){
 
 	// invoke plugin
 	$('#our-test').MultiFile({
-		onFileChange: function(){
-			console.log(this, arguments);
+		onFileChange: function(element, file_name, MultiFile, file_object){
+			console.log('this', this );
+			//console.log('event arguments', arguments);
+			console.log('file_name', file_name);
+			console.log('file_object', file_object);
+			console.log('MultiFile', MultiFile);
+			//console.log('$(...).MultiFile("data")', $(this).MultiFile("data"));
+			//console.log('$(...).MultiFile("size")', $(this).MultiFile("size"));
+			//console.log('$(...).MultiFile("count")', $(this).MultiFile("count"));
+			//console.log('$(...).MultiFile("files")', $(this).MultiFile("files"));
+		},
+		afterFileRemove: function(element, file_name, MultiFile, file_object){
+			console.log('removed '+ file_name);
+		},
+		error: function(s){
+			console.error('error: '+ s);
 		}
 	});
 
