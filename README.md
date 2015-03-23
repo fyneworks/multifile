@@ -88,3 +88,4 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 ##Continous Integration with Travis CI
 
 [![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile): full build history on [Travis CI]((https://travis-ci.org/fyneworks/multifile))
+
