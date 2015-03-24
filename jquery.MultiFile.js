@@ -380,7 +380,7 @@ if (window.jQuery)(function ($) {
 							// Handle error
 							MultiFile.error(ERROR.join('\n\n'));
 
-							// 2007-06-24: BUG FIX - Thanks to Adrian Wróbel <adrian [dot] wrobel [at] gmail.com>
+							// 2007-06-24: BUG FIX - Thanks to Adrian Wrï¿½bel <adrian [dot] wrobel [at] gmail.com>
 							// Ditch the trouble maker and add a fresh new element
 							MultiFile.n--;
 							MultiFile.addSlave(newEle[0], slave_count);
@@ -485,11 +485,8 @@ if (window.jQuery)(function ($) {
 
 						// append file label to list
 						if(i>1) names.append(', ');
-						names.append(label);
-
-					});
-
-					//$.each(files, function (i, file) {
+						//names.append(label);
+						//$.each(files, function (i, file) {
 						// Create label elements
 						var
 							r = $('<div class="MultiFile-label"></div>'),
@@ -565,11 +562,12 @@ if (window.jQuery)(function ($) {
 
 						// Insert label
 						MultiFile.list.append(
-							r.append(b, ' ', names)
+							r.append(b, ' ', label)
 						);
 
 					//}); // each file?
 
+					});
 					//# Trigger Event! afterFileAppend
 					MultiFile.trigger('afterFileAppend', slave, MultiFile, files);
 					//# End Event!
