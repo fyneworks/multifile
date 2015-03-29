@@ -1,5 +1,5 @@
 /*
- ### jQuery Multiple File Selection Plugin v2.2.0 - 2015-03-23 ###
+ ### jQuery Multiple File Selection Plugin v2.2.1 - 2015-03-23 ###
  * Home: http://www.fyneworks.com/jquery/multifile/
  * Code: http://code.google.com/p/jquery-multifile-plugin/
  *
@@ -224,7 +224,7 @@ if (window.jQuery)(function ($) {
 					//slave.id = slave.id || MultiFile.generateID(slave_count);
 					slave.id = MultiFile.generateID(slave_count);
 					//FIX for: http://code.google.com/p/jquery-multifile-plugin/issues/detail?id=23
-					//CHANGE v2.2.0 - change ID of all file elements, keep original ID in wrapper
+					//CHANGE v2.2.1 - change ID of all file elements, keep original ID in wrapper
 
 					// 2008-Apr-29: New customizable naming convention (see url below)
 					// http://groups.google.com/group/jquery-dev/browse_frm/thread/765c73e41b34f924#
@@ -470,6 +470,7 @@ if (window.jQuery)(function ($) {
 										.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
 										.replace(/\$(size)/gi, sl(file.size || 0))
 										.replace(/\$(preview)/gi, p)
+										.replace(/\$(i)/gi, i)
 								);
 						
 						// now supports preview via locale string.
@@ -487,6 +488,18 @@ if (window.jQuery)(function ($) {
 						if(i>1) names.append(', ');
 						names.append(label);
 
+						var v = String(file.name || '' );
+						names[names.length] =
+							(
+								'<span class="MultiFile-title" title="' + MultiFile.STRING.selected + '">'
+									+ MultiFile.STRING.file +
+								'</span>'
+							)
+							.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
+							.replace(/\$(ext|extension|type)/gi, (v.match(/[^\.]+$/gi)||[''])[0])
+							.replace(/\$(size)/gi, sl(file.size || 0))
+							.replace(/\$(i)/gi, i)
+						;
 					});
 
 					//$.each(files, function (i, file) {
