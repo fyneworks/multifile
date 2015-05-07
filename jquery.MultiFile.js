@@ -145,7 +145,7 @@ if (window.jQuery)(function ($) {
 
 				// APPLY CONFIGURATION
 				$.extend(MultiFile, o || {});
-				MultiFile.STRING = $.extend(MultiFile.STRING || {}, $.fn.MultiFile.options.STRING, MultiFile.STRING);
+				MultiFile.STRING = $.extend({}, $.fn.MultiFile.options.STRING, MultiFile.STRING);
 
 				//===
 

@@ -451,7 +451,7 @@ $(function(){ // wait for page to load
   $('input.<strong>this-is-your-class</strong>').MultiFile({
     // your options go here
     max: 2,
-    accept: 'jpg'
+    accept: 'jpg|png|gif'
   });
 
 });</code></pre>
@@ -746,7 +746,7 @@ $(function(){
   $('#WithEvents').MultiFile({
     max: 2,
     max_size: 100,
-    accept: 'jpg',
+    accept: 'jpg|png|gif',
     onFileRemove: function(element, value, master_element) {
       $('#F9-Log').append('&lt;li&gt;onFileRemove - ' + value + '&lt;/li&gt;')
     },
@@ -787,7 +787,7 @@ $(function(){
             $('#WithEvents').MultiFile({
               max: 2,
               max_size: 100,
-              accept: 'jpg',
+              accept: 'jpg|png|gif',
               onFileRemove: function(element, value, master_element) {
                 $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
               },
