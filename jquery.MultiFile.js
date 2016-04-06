@@ -485,7 +485,7 @@ if (window.jQuery)(function ($) {
 						});
 
 						// append file label to list
-						if(i>1) names.append(', ');
+						if(i>0) names.append(', ');
 						names.append(label);
 
 						var v = String(file.name || '' );
