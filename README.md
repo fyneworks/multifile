@@ -85,7 +85,16 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ---
 
+##Full Documentation and Demos
+
+For more examples, documentation and a full list of features available, please [visit the plugin's official website]("http://www.fyneworks.com/jquery/multifile/").
+
+---
+
 ##Continous Integration with Travis CI
 
 [![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile): full build history on [Travis CI]((https://travis-ci.org/fyneworks/multifile))
 
+
+
+http://www.fyneworks.com/jquery/multifile/
