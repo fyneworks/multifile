@@ -138,8 +138,10 @@ if (window.jQuery)(function ($) {
 
 				//===
 
-				// HTML5: enforce multiple selection to be enabled
-				if(o.max>1) MultiFile.E.attr('multiple','multiple').prop('multiple',true);
+				// HTML5: enforce multiple selection to be enabled, except when explicitly disabled
+				if (o.multiple !== false) {
+		                    if (o.max > 1) MultiFile.E.attr('multiple', 'multiple').prop('multiple', true);
+		                }
 
 				//===
 
@@ -380,7 +382,7 @@ if (window.jQuery)(function ($) {
 							// Handle error
 							MultiFile.error(ERROR.join('\n\n'));
 
-							// 2007-06-24: BUG FIX - Thanks to Adrian Wróbel <adrian [dot] wrobel [at] gmail.com>
+							// 2007-06-24: BUG FIX - Thanks to Adrian WrÃ³bel <adrian [dot] wrobel [at] gmail.com>
 							// Ditch the trouble maker and add a fresh new element
 							MultiFile.n--;
 							MultiFile.addSlave(newEle[0], slave_count);
