@@ -6,7 +6,7 @@
 
 MultiFile ($.MultiFile) is a non-obstrusive and crucially **non-opinionated** plugin for jQuery that helps your users easily select multiple files for upload.
 
-It helps you implement a basic interface to improve the file selection experience of your users whilst providing you, the developer, with 3 simple methods of validation: accepted extensions, number of files and total size.
+It helps you implement a basic interface to improve the file selection experience of your users whilst providing you, the developer, with 3 simple methods of validation: accepted extensions, maximum number of files and total size.
 
 ---
 
