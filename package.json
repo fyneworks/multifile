@@ -3,7 +3,7 @@
   "title": "jQuery MultiFile",
   "version": "2.2.1",
   "description": "jQuery Multiple File Selection Plugin",
-  "main": "index.html",
+  "main": "jquery.MultiFile.js",
   "scripts": {
     "test": "grunt test",
     "build": "grunt build",
