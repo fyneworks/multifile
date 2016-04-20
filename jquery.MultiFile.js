@@ -465,7 +465,7 @@ if (window.jQuery)(function ($) {
 										(
 											'<span class="MultiFile-label" title="' + t + '">'+
 												'<span class="MultiFile-title">'+ n +'</span>'+
-												(MultiFile.preview || $(slave).is('.with-preview') ? p : '' )+
+												(file.type.substr(0,6) == 'image/' && (MultiFile.preview || $(slave).is('.with-preview')) ? p : '' )+
 											'</span>'
 										)
 										.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
