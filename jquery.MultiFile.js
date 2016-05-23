@@ -456,7 +456,7 @@ if (window.jQuery)(function ($) {
 					
 					var names = $('<span/>');
 					$.each(files, function (i, file) {
-						var v = String(file.name || '' ),
+						var v = String(file.name || '' ).replace(/[&<>'"]/g, function(c) { return '&#'+c.charCodeAt()+';'; }),
 								S = MultiFile.STRING,
 								n = S.label || S.file || S.name,
 								t = S.title || S.tooltip || S.selected,
