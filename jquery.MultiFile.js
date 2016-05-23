@@ -460,12 +460,12 @@ if (window.jQuery)(function ($) {
 								S = MultiFile.STRING,
 								n = S.label || S.file || S.name,
 								t = S.title || S.tooltip || S.selected,
-								p = '<img class="MultiFile-preview" style="'+ MultiFile.previewCss+'"/>',
+								p = file.type.substr(0,6) == 'image/' ? '<img class="MultiFile-preview" style="'+ MultiFile.previewCss+'"/>' : '',
 								label =	$(
 										(
 											'<span class="MultiFile-label" title="' + t + '">'+
 												'<span class="MultiFile-title">'+ n +'</span>'+
-												(file.type.substr(0,6) == 'image/' && (MultiFile.preview || $(slave).is('.with-preview')) ? p : '' )+
+												(MultiFile.preview || $(slave).is('.with-preview') ? p : '' )+
 											'</span>'
 										)
 										.replace(/\$(file|name)/gi, (v.match(/[^\/\\]+$/gi)||[v])[0])
