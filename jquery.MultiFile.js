@@ -301,7 +301,7 @@ if (window.jQuery)(function ($) {
 						$.each(files, function (i, file) {
 
 							// pop local variables out of array/file object
-							var v = file.name,
+							var v = file.name.replace(/^C:\\fakepath\\/gi,''),
 									s = file.size,
 									p = function(z){
 										return z
