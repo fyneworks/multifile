@@ -243,7 +243,7 @@ if (window.jQuery)(function ($) {
 
 					// If we've reached maximum number, disable input slave
 					var disable_slave;
-					if ((MultiFile.max > 0) && ((MultiFile.files.length) > (MultiFile.max))) {
+					if ((MultiFile.max > 0) && ((MultiFile.files.length) >= (MultiFile.max))) {
 						slave.disabled = true;
 						disable_slave = true;
 					};
