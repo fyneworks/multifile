@@ -1,6 +1,6 @@
-#[jQuery Multiple File Upload](http://www.fyneworks.com/jquery/multifile/)
+# [jQuery Multiple File Upload](http://www.fyneworks.com/jquery/multifile/)
 
-##Overview
+## Overview
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=fyneworks&url=https://github.com/fyneworks/multifile&title=Multiple File Upload&language=&tags=github&category=software)
 
@@ -10,7 +10,7 @@ It helps you implement a basic interface to improve the file selection experienc
 
 ---
 
-##Server-Side Implementation
+## Server-Side Implementation
 
 This plugin will never deal with the server-side implementation of your upload solution. This plugin will not upload your files. If that's what you want, we recommend you check them out one of the
 [many](http://www.uploadify.com/"),
@@ -21,7 +21,7 @@ And remember..... **server-side validation is always required**.
 
 ---
 
-##Installation
+## Installation
 
 First, get the package
 
@@ -41,7 +41,7 @@ Then add the plugin (after jQuery)
 
 ---
 
-##Recommended Usage (HTML5)
+## Recommended Usage (HTML5)
 
 Just add `multiple="multiple"` and `class="multi"` attributes to your `<input type="file"/>`, like this:
 
@@ -63,7 +63,7 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ---
 
-##Legacy Usage (pre HTML5)
+## Legacy Usage (pre HTML5)
 
 Versions of HTML and xHTML prior to HTML 5 do not support the `multiple="multiple"` attribute. The plugin will still work in almost the same way, but your users will only be able to **one file at a time**.
 
@@ -85,12 +85,12 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ---
 
-##Full Documentation and Demos
+## Full Documentation and Demos
 
 For more examples, documentation and a full list of features available, please [visit the plugin's official website](http://www.fyneworks.com/jquery/multifile/).
 
 ---
 
-##Continous Integration with Travis CI
+## Continous Integration with Travis CI
 
 [![Master Status](https://travis-ci.org/fyneworks/multifile.svg?branch=master)](https://travis-ci.org/fyneworks/multifile): full build history on [Travis CI]((https://travis-ci.org/fyneworks/multifile))
