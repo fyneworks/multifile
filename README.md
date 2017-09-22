@@ -39,6 +39,8 @@ Then add the plugin (after jQuery)
 <script src="/path/to/plugin/jquery.MultiFile.min.js"></script>
 ```
 
+**Note** that, before release 2.2.2, the file was called `jQuery.MultiFile.min.js` instead (jQuery recommended to use a lowercase ‘q’ in package names).
+
 ---
 
 ## Recommended Usage (HTML5)
