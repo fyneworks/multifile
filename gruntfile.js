@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       remote: {
         options: {
           branch: 'dev',
-          message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>'
+          message: 'Auto deploy <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>'
         }
       },
     },
