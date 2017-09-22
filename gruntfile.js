@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  
+
   var package = grunt.file.readJSON('package.json');
 
   grunt.initConfig ({
@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         files: {'docs.css' : 'docs/docs.scss'}
       },
     },
-    
+
     // ---------------------
 
     cssmin: {
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
         files: {'docs.css': ["docs.css"]}
       }
     },
-    
+
     // ---------------------
 
     jade: {
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         files: {"docs.html": ["docs/docs.jade"]}
       }
     },
-    
+
     // ---------------------
 
     uglify: {
@@ -53,18 +53,18 @@ module.exports = function(grunt) {
         files: {'jQuery.MultiFile.min.js': 'jQuery.MultiFile.js'}
       }
     },
-    
+
     // ---------------------
-    
+
     shell: {
       beep_twice: {
         command: 'echo  echo ',
         options: {stdout: true}
       }
     },
-    
+
     // ---------------------
-    
+
     gitcommit: {
       local: {
         options: {
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
   });
 
   // ---------------------
-  
+
   // Load required plugins
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-git');
 
   // ---------------------
-  
+
   // Register common tasks and aliases
   grunt.registerTask('default', ['uglify:dist']);
   grunt.registerTask('build', ['uglify:dist']);
@@ -120,19 +120,19 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', ['gitpush:remote']);
 
   // ---------------------
-  
+
   // Custom test tasks
   grunt.registerTask('test', function() {
     grunt.log.write('Unit tests will go here'+'\n').ok();
   });
 
   // ---------------------
-  
+
   // Watch for file changes and run tasks automatically
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
   });
 
   // ---------------------
-  
+
 };

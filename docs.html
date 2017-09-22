@@ -168,7 +168,7 @@
 
     </div>
     <div class="example">
-    
+
     <h3>Using the <code>class</code> property</h3>
 
     <div class="row">
@@ -240,7 +240,7 @@
 
     </div>
     <div class="example">
-    
+
     <h3>Selecting many files at once (HTML5)</h3>
 
     <div class="row">
@@ -315,7 +315,7 @@
 
     </div>
     <div class="example">
-    
+
     <h3>Validating Sizes</h3>
 
     <div class="row">
@@ -391,7 +391,7 @@
     </div>
 
     <div class="example">
-    
+
     <h3>With an Image Preview</h3>
 
     <div class="row">
@@ -446,7 +446,7 @@
           Followed by
           <pre><code class="language-javascript">// this is your code
 $(function(){ // wait for page to load
-  
+
   // this is your selector
   $('input.<strong>this-is-your-class</strong>').MultiFile({
     // your options go here
@@ -466,7 +466,7 @@ $(function(){ // wait for page to load
   <pre><code class="language-markup">&lt;input multiple type="file" id="UpTo3Files"/&gt;</code></pre>
   <pre><code class="language-javascript">// wait for document to load
 $(function(){
-  
+
   // up to 3 files can be selected
 
   // invoke plugin
@@ -480,7 +480,7 @@ $(function(){
           Try it:
           <input multiple type="file" id="UpTo3Files"/>
           <script>$(function(){
-  
+
   // up to 5 files can be selected
 
   // invoke plugin
@@ -497,13 +497,13 @@ $(function(){
   <pre><code class="language-markup">&lt;input multiple type="file" id="UpTo3Images"/&gt;</code></pre>
   <pre><code class="language-javascript">// wait for document to load
 $(function(){
-  
+
   // up to 3 files can be selected
   // only images are allowed
 
   // invoke plugin
   $('#UpTo3Images').MultiFile({
-    max: 3, 
+    max: 3,
     accept: 'gif|jpg|png'
   });
 
@@ -512,13 +512,13 @@ $(function(){
           Try it:
           <input multiple type="file" id="UpTo3Images"/>
           <script>$(function(){
-  
+
   // up to 5 files can be selected
   // only images are allowed
 
   // invoke plugin
   $('#UpTo3Images').MultiFile({
-    max: 3, 
+    max: 3,
     accept: 'gif|jpg|png'
   });
 
@@ -530,20 +530,20 @@ $(function(){
   <pre><code class="language-markup">&lt;input multiple type="file" id="EmPortugues"/&gt;</code></pre>
   <pre><code class="language-javascript">// wait for document to load
 $(function(){
-  
+
   // use a different language
   // $file prints the file name
   // $ext prints the file extension
 
   // invoke plugin
-  $('#EmPortugues').MultiFile({ 
-    max: 3, 
+  $('#EmPortugues').MultiFile({
+    max: 3,
     accept: 'gif|jpg|png'
-    STRING: { 
-      remove:'Remover', 
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!' 
-    } 
+    STRING: {
+      remove:'Remover',
+      selected:'Selecionado: $file',
+      denied:'Invalido arquivo de tipo $ext!'
+    }
   });
 
 });</code></pre>
@@ -551,20 +551,20 @@ $(function(){
           Try it:
           <input multiple type="file" id="EmPortugues"/>
           <script>$(function(){
-  
+
   // use a different lanague
   // $file prints the file name
   // $ext prints the file extension
 
   // invoke plugin
-  $('#EmPortugues').MultiFile({ 
-    max: 3, 
+  $('#EmPortugues').MultiFile({
+    max: 3,
     accept: 'gif|jpg|png',
-    STRING: { 
-      remove:'Remover', 
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!' 
-    } 
+    STRING: {
+      remove:'Remover',
+      selected:'Selecionado: $file',
+      denied:'Invalido arquivo de tipo $ext!'
+    }
   });
 
 });</script>
@@ -585,13 +585,13 @@ $(function(){
           </legend>
 -->
           <p>This example populates the file list in a custom element</p>
-          <pre><code class="language-javascript">$(function() { // wait for document to load 
+          <pre><code class="language-javascript">$(function() { // wait for document to load
   $('#T7').MultiFile({
     list: '#T7-list'
   });
 });</code></pre>
           <script type="text/javascript" language="javascript">
-          $(function() { // wait for document to load 
+          $(function() { // wait for document to load
             $('#T7').MultiFile({
               list: '#T7-list'
             });
@@ -626,7 +626,7 @@ $(function(){
         </legend>
 -->
         <p>Use a custom 'remove' image in the file list</p>
-        <pre><code class="language-javascript">$(function() { // wait for document to load 
+        <pre><code class="language-javascript">$(function() { // wait for document to load
   $('#T8A').MultiFile({
     STRING: {
       remove: '&lt;img src=&quot;/i/bin.gif&quot; height=&quot;16&quot; width=&quot;16&quot; alt=&quot;x&quot;/&gt;'
@@ -634,7 +634,7 @@ $(function(){
   });
 });</code></pre>
         <script type="text/javascript" language="javascript">
-        $(function() { // wait for document to load 
+        $(function() { // wait for document to load
           $('#T8A').MultiFile({
             STRING: {
               remove: '<img src="/i/bin.gif" height="16" width="16" alt="x"/>'
@@ -663,7 +663,7 @@ $(function(){
         </legend>
 -->
         <p>Customising all list content</p>
-        <pre><code class="language-javascript">$(function() { // wait for document to load 
+        <pre><code class="language-javascript">$(function() { // wait for document to load
   $('#T8B').MultiFile({
     STRING: {
       file: '&lt;em title=&quot;Click to remove&quot; onclick=&quot;$(this).parent().prev().click()&quot;&gt;$file&lt;/em&gt;',
@@ -672,7 +672,7 @@ $(function(){
   });
 });</code></pre>
         <script type="text/javascript" language="javascript">
-        $(function() { // wait for document to load 
+        $(function() { // wait for document to load
           $('#T8B').MultiFile({
             STRING: {
               file: '<em title="Click to remove" onclick="$(this).parent().prev().click()">$file</em>',
@@ -740,7 +740,7 @@ $(function(){
   <pre><code class="language-markup">&lt;input multiple type="file" id="WithEvents"/&gt;</code></pre>
   <pre><code class="language-javascript">// wait for document to load
 $(function(){
-  
+
   // 2 jpgs under 100kb only
 
   $('#WithEvents').MultiFile({
@@ -783,7 +783,7 @@ $(function(){
   });
 });</code></pre>
           <script type="text/javascript" language="javascript">
-          $(function() { // wait for document to load 
+          $(function() { // wait for document to load
             $('#WithEvents').MultiFile({
               max: 2,
               max_size: 100,
@@ -863,12 +863,12 @@ $(function(){
   class="multi {
     accept:'gif|jpg',
     max:3,
-    STRING:{ 
-      remove:'Remover', 
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!', 
-      duplicate:'Arquivo ja selecionado:\n$file!' 
-    } 
+    STRING:{
+      remove:'Remover',
+      selected:'Selecionado: $file',
+      denied:'Invalido arquivo de tipo $ext!',
+      duplicate:'Arquivo ja selecionado:\n$file!'
+    }
   }"
 /&gt;</code></pre>
 
@@ -876,12 +876,12 @@ $(function(){
   <pre><code class="language-markup">&lt;input type="file" id="PortugueseFileUpload" /&gt;</code></pre>
   <pre><code class="language-javascript">$(function(){
   $('#PortugueseFileUpload').MultiFile({
-    accept:'gif|jpg', 
-    max:3, 
+    accept:'gif|jpg',
+    max:3,
     STRING: {
-      remove:'Remover',  
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!', 
+      remove:'Remover',
+      selected:'Selecionado: $file',
+      denied:'Invalido arquivo de tipo $ext!',
       duplicate:'Arquivo ja selecionado:\n$file!'
     }
   });
@@ -896,12 +896,12 @@ $(function(){
 &lt;input type="file" class="multi-pt" /&gt;</code></pre>
   <pre><code class="language-javascript">$(function(){
   $('.multi-pt').MultiFile({
-    accept:'gif|jpg', 
-    max:3, 
-    STRING: { 
-      remove:'Remover', 
-      selected:'Selecionado: $file', 
-      denied:'Invalido arquivo de tipo $ext!', 
+    accept:'gif|jpg',
+    max:3,
+    STRING: {
+      remove:'Remover',
+      selected:'Selecionado: $file',
+      denied:'Invalido arquivo de tipo $ext!',
       duplicate:'Arquivo ja selecionado:\n$file!'
     }
   });
@@ -935,7 +935,7 @@ $(function(){
   <h2>Support</h2>
   <div class="row">
   <div class="col-md-12">
-    
+
     <p>
       We very much encourage and would love you all to report issues, contribue and discuss this project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>.
     </p>
@@ -943,10 +943,10 @@ $(function(){
       There's also a <a href="README.md">README.md</a> for quick reference, if you're that way inclined.
     </p>
     <p>
-      This project started a a very long time ago... and it's been dormant since 2009! Support has been shockingly bad, we admit, 
-      but we would like to engage more actively with our users and the jQuery community from now on. So as of April 2014, 
-      we've left <a href="https://code.google.com/p/jquery-fyneworks/" target="_blank">Google Code</a> behind and 
-      will be starting a fresh project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>. 
+      This project started a a very long time ago... and it's been dormant since 2009! Support has been shockingly bad, we admit,
+      but we would like to engage more actively with our users and the jQuery community from now on. So as of April 2014,
+      we've left <a href="https://code.google.com/p/jquery-fyneworks/" target="_blank">Google Code</a> behind and
+      will be starting a fresh project on <a target="_blank" href="https://github.com/fyneworks/multifile">GitHub</a>.
       Our other projects (<a href="http://www.fyneworks.com/jquery/star-rating">Star Rating</a> &amp; <a href="http://www.fyneworks.com/jquery/CKEditor">CKEditor</a> will follow shortly).
     </p>
   </div>
