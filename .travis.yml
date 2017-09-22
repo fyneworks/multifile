@@ -2,5 +2,4 @@ language: node_js
 node_js:
   - "6.11.3"
 before_script:
-  - git clean -fdx
   - npm install -g grunt-cli
