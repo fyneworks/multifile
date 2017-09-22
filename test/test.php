@@ -14,5 +14,3 @@ print_r($_FILES);
 //echo('REQUEST HEADERS:'.'>>>>>>>>>>'.$nl);
 //print_r($_REQUEST);
 //echo('<<<<<<<<<<<<<<'.$nl.$nl);
-
-?>
