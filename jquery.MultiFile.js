@@ -1,5 +1,5 @@
 /*
- ### jQuery Multiple File Selection Plugin v2.2.1 - 2015-03-23 ###
+ ### jQuery Multiple File Selection Plugin v2.2.2 - 2016-06-16 ###
  * Home: http://www.fyneworks.com/jquery/multifile/
  * Code: https://github.com/fyneworks/multifile
  *
