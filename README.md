@@ -2,7 +2,7 @@
 
 ## Overview
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=fyneworks&url=https://github.com/fyneworks/multifile&title=Multiple File Upload&language=&tags=github&category=software)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=fyneworks&url=https://github.com/fyneworks/multifile&title=Multiple+File+Upload&language=&tags=github&category=software)
 
 MultiFile ($.MultiFile) is a non-obstrusive and crucially **non-opinionated** plugin for jQuery that helps your users easily select multiple files for upload.
 
