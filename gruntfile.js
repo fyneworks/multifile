@@ -50,7 +50,7 @@ module.exports = function(grunt) {
       },
       dist: {
         options: {},
-        files: {'jQuery.MultiFile.min.js': 'jQuery.MultiFile.js'}
+        files: {'jquery.MultiFile.min.js': 'jquery.MultiFile.js'}
       }
     },
 
