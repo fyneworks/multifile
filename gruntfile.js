@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         options: {
           expand: false,
           processImport: true,
-          banner: '/* <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %> */',
+          banner: '/* <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */',
         },
         files: {'docs.css': ["docs.css"]}
       }
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '/* <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %> */',
+        banner: '/* <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */',
         compress: {} /*{drop_console: true}*/,
         mangle: true /*{except: ['jQuery','fwx']}*/
       },
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
       local: {
         options: {
           branch: 'dev',
-          message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>'
+          message: 'Auto commit <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>'
         }
       },
     },
@@ -77,7 +77,7 @@ module.exports = function(grunt) {
       remote: {
         options: {
           branch: 'dev',
-          message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd hh:mm:ss") %>'
+          message: 'Auto deply <%= pkg.name %> v<%= pkg.version %> @ <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>'
         }
       },
     },
