@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         options: {
           expand: false,
           processImport: true,
-          banner: '/* <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */',
+          banner: '/* <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */',
         },
         files: {'docs.css': ["docs.css"]}
       }
