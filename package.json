@@ -5,7 +5,7 @@
   "description": "jQuery Multiple File Selection Plugin",
   "main": "jquery.MultiFile.js",
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt all test",
     "build": "grunt build",
     "document": "grunt doc"
   },
