@@ -745,7 +745,7 @@ $(function(){
 
   $('#WithEvents').MultiFile({
     max: 2,
-    max_size: 100,
+    maxsize: 100,
     accept: 'jpg|png|gif',
     onFileRemove: function(element, value, master_element) {
       $('#F9-Log').append('&lt;li&gt;onFileRemove - ' + value + '&lt;/li&gt;')
@@ -786,7 +786,7 @@ $(function(){
           $(function() { // wait for document to load
             $('#WithEvents').MultiFile({
               max: 2,
-              max_size: 100,
+              maxsize: 100,
               accept: 'jpg|png|gif',
               onFileRemove: function(element, value, master_element) {
                 $('#F9-Log').append('<li>onFileRemove - ' + value + '</li>')
