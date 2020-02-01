@@ -1,4 +1,4 @@
-# [jQuery Multiple File Upload](http://www.fyneworks.com/jquery/multifile/)
+# [jQuery Multiple File Upload](https://multifile.fyneworks.com//)
 
 ## Overview
 
@@ -89,7 +89,7 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ## Full Documentation and Demos
 
-For more examples, documentation and a full list of features available, please [visit the plugin's official website](http://www.fyneworks.com/jquery/multifile/).
+For more examples, documentation and a full list of features available, please [visit the plugin's official website](https://multifile.fyneworks.com//).
 
 ---
 
