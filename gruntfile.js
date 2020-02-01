@@ -36,7 +36,7 @@ module.exports = function(grunt) {
             timestamp: "<%= pkg.name + ' '+ (new Date().getTime()) %>"
           }
         },
-        files: {"docs.html": ["docs/docs.jade"]}
+        files: {"docs/index.html": ["docs/docs.jade"]}
       }
     },
 
