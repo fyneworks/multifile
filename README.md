@@ -31,7 +31,7 @@ Then, invoke the required javascript files to your document, just before the `</
 
 Add [jQuery](https://developers.google.com/speed/libraries/devguide#jquery) to your page. We strongly recommend you make use of Google's Hosted Libraries service.
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
 
 Then add the plugin (after jQuery)
