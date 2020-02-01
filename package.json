@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/fyneworks/multifile",
   "dependencies": {
-    "jquery": "~1.7.3"
+    "jquery": "~3.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

@@ -66,6 +66,12 @@ $(function(){
 
 	// invoke plugin
 	$('#our-test').MultiFile({
+
+        // this option will remove the comma 
+        // between file names when multiple
+        // files are selected at once
+        separator: false,
+
 		onFileChange: function(){
 			console.log(this, arguments);
 		}

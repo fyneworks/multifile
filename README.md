@@ -1,4 +1,4 @@
-# [jQuery Multiple File Upload](http://www.fyneworks.com/jquery/multifile/)
+# [jQuery Multiple File Upload](https://multifile.fyneworks.com/)
 
 ## Overview
 
@@ -13,8 +13,8 @@ It helps you implement a basic interface to improve the file selection experienc
 ## Server-Side Implementation
 
 This plugin will never deal with the server-side implementation of your upload solution. This plugin will not upload your files. If that's what you want, we recommend you check them out one of the
-[many](http://www.uploadify.com/"),
-[many](http://www.plupload.com/")
+[many](http://www.uploadify.com/),
+[many](http://www.plupload.com/)
 [many](http://blueimp.github.io/jQuery-File-Upload/") great tools out there which provide a full solution - with image previews, progress bars and extensive support for many environments (`.NET`, `PHP`, `Java`, etc...).
 
 And remember..... **server-side validation is always required**.
@@ -31,7 +31,7 @@ Then, invoke the required javascript files to your document, just before the `</
 
 Add [jQuery](https://developers.google.com/speed/libraries/devguide#jquery) to your page. We strongly recommend you make use of Google's Hosted Libraries service.
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
 
 Then add the plugin (after jQuery)
@@ -89,7 +89,7 @@ Use the `accept` if you only want files of a certain extension to be selected Se
 
 ## Full Documentation and Demos
 
-For more examples, documentation and a full list of features available, please [visit the plugin's official website](http://www.fyneworks.com/jquery/multifile/).
+For more examples, documentation and a full list of features available, please [visit the plugin's official website](https://multifile.fyneworks.com/).
 
 ---
 

@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     sass: {
       docs: {
         options:{/*outputStyle: 'compressed'*/ /* cssmin will do this for us */},
-        files: {'docs.css' : 'docs/docs.scss'}
+        files: {'docs/docs.css' : 'docs/docs.scss'}
       },
     },
 
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           processImport: true,
           banner: '/* <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> */',
         },
-        files: {'docs.css': ["docs.css"]}
+        files: {'docs/docs.css': ["docs/docs.css"]}
       }
     },
 
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
             timestamp: "<%= pkg.name + ' '+ (new Date().getTime()) %>"
           }
         },
-        files: {"docs.html": ["docs/docs.jade"]}
+        files: { "docs/index.html": ["docs/docs.jade"] }
       }
     },
 
@@ -50,7 +50,10 @@ module.exports = function(grunt) {
       },
       dist: {
         options: {},
-        files: {'jquery.MultiFile.min.js': 'jquery.MultiFile.js'}
+        files: {
+          'jquery.MultiFile.min.js': 'jquery.MultiFile.js',
+          'docs/jquery.MultiFile.min.js': 'jquery.MultiFile.min.js'
+        }
       }
     },
 
@@ -90,7 +93,7 @@ module.exports = function(grunt) {
       },
       jade: { files: ['package.json','docs/**/*.jade','docs/*.html'], tasks: ['jade:docs','beep'], options: {} },
       scss: { files: ['docs/*.scss'], tasks: ['sass:docs','beep'], options: {} },
-      css: { files: ['*.css'], tasks: ['cssmin:docs','beep'], options: {} },
+      css: { files: ['docs/*.css'], tasks: ['cssmin:docs','beep'], options: {} },
       js: { files: ['jquery.MultiFile.js'], tasks: ['uglify:dist','beep'], options: {} }
     }
 
