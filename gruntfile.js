@@ -36,7 +36,7 @@ module.exports = function(grunt) {
             timestamp: "<%= pkg.name + ' '+ (new Date().getTime()) %>"
           }
         },
-        files: {"docs/index.html": ["docs/docs.jade"]}
+        files: { "docs/index.html": ["docs/docs.jade"] }
       }
     },
 
@@ -50,7 +50,10 @@ module.exports = function(grunt) {
       },
       dist: {
         options: {},
-        files: {'jquery.MultiFile.min.js': 'jquery.MultiFile.js'}
+        files: {
+          'jquery.MultiFile.min.js': 'jquery.MultiFile.js',
+          'docs/jquery.MultiFile.min.js': 'jquery.MultiFile.min.js'
+        }
       }
     },
 
