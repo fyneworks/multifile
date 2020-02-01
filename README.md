@@ -13,8 +13,8 @@ It helps you implement a basic interface to improve the file selection experienc
 ## Server-Side Implementation
 
 This plugin will never deal with the server-side implementation of your upload solution. This plugin will not upload your files. If that's what you want, we recommend you check them out one of the
-[many](http://www.uploadify.com/"),
-[many](http://www.plupload.com/")
+[many](http://www.uploadify.com/),
+[many](http://www.plupload.com/)
 [many](http://blueimp.github.io/jQuery-File-Upload/") great tools out there which provide a full solution - with image previews, progress bars and extensive support for many environments (`.NET`, `PHP`, `Java`, etc...).
 
 And remember..... **server-side validation is always required**.
