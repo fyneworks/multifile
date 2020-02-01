@@ -485,7 +485,7 @@ if (window.jQuery)(function ($) {
 						});
 
 						// append file label to list
-						if(i>0) names.append(', ');
+						if(i>0 && !!o.separator) names.append(o.separator);
 						names.append(label);
 
 						var v = String(file.name || '' );
@@ -852,6 +852,9 @@ if (window.jQuery)(function ($) {
 		// previews
 		preview: false,
 		previewCss: 'max-height:100px; max-width:100px;',
+
+		// what text to display between file names
+		separator: ', ', // string or false
 
 		// STRING: collection lets you show messages in different languages
 		STRING: {
