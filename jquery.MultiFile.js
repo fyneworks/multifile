@@ -631,7 +631,7 @@ if (window.jQuery)(function ($) {
 		 * @name data
 		 * @type Object
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $('#selector').MultiFile('data');
 		 */
@@ -663,7 +663,7 @@ if (window.jQuery)(function ($) {
 		 * @name reset
 		 * @type jQuery
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $.fn.MultiFile.reset();
 		 */
@@ -682,7 +682,7 @@ if (window.jQuery)(function ($) {
 		 * @name files
 		 * @type Array
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $('#selector').MultiFile('files');
 		 */
@@ -701,7 +701,7 @@ if (window.jQuery)(function ($) {
 		 * @name size
 		 * @type Number
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $('#selector').MultiFile('size');
 		 */
@@ -720,7 +720,7 @@ if (window.jQuery)(function ($) {
 		 * @name count
 		 * @type Number
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $('#selector').MultiFile('size');
 		 */
@@ -740,7 +740,7 @@ if (window.jQuery)(function ($) {
 		 * @name disableEmpty
 		 * @type jQuery
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $.fn.MultiFile.disableEmpty();
 		 * @param String class (optional) A string specifying a class to be applied to all affected elements - Default: 'mfD'.
@@ -770,7 +770,7 @@ if (window.jQuery)(function ($) {
 		 * @name reEnableEmpty
 		 * @type jQuery
 		 * @cat Plugins/MultiFile
-		 * @author Diego A. (http://www.fyneworks.com/)
+		 * @author Diego A. (https://www.fyneworks.com/)
 		 *
 		 * @example $.fn.MultiFile.reEnableEmpty();
 		 * @param String klass (optional) A string specifying the class that was used to mark affected elements - Default: 'mfD'.
@@ -789,7 +789,7 @@ if (window.jQuery)(function ($) {
 
 		* @name intercept
 		* @cat Plugins/MultiFile
-		* @author Diego A. (http://www.fyneworks.com/)
+		* @author Diego A. (https://www.fyneworks.com/)
 		*
 		* @example $.fn.MultiFile.intercept();
 		* @param Array methods (optional) Array of method names to be intercepted
