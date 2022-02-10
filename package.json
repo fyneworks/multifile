@@ -41,7 +41,7 @@
     "grunt-sass": "^3.1.0",
     "grunt-shell": "^3.0.1",
     "html-minifier": "^4.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "selenium-webdriver": "^4.0.0-alpha.7",
     "uglifyjs": "^2.4.11"
   }
