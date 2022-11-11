@@ -110,6 +110,9 @@ if (window.jQuery)(function ($) {
 				o.max = new Number(o.max);
 				// limit extensions?
 				o.accept = o.accept || MultiFile.E.attr('accept') || '';
+				// ignore mime-type accept attribute for browser handling
+				// see https://github.com/fyneworks/multifile/issues/101
+				if(o.accept && o.accept.match(/\//)) o.accept = '';
 				if (!o.accept) {
 					o.accept = (MultiFile.e.className.match(/\b(accept\-[\w\|]+)\b/gi)) || '';
 					o.accept = new String(o.accept).replace(/^(accept|ext)\-/i, '');
