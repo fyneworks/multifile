@@ -258,6 +258,9 @@ if (window.jQuery)(function ($) {
 
 					// Clear value
 					slave.val('').attr('value', '')[0].value = '';
+					
+					// Make slave field optional to avoid validation errors
+                                        slave.attr('required', false);
 
 					// Stop plugin initializing on slaves
 					slave.addClass('MultiFile-applied');
